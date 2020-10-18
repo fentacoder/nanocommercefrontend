@@ -64,31 +64,31 @@ export class PaypalService {
   }
 
   saveTransaction(data):Observable<any>{
-    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/payment/paypal/save`,data,{headers:this.jsonHeaders});
+    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/orders/paypal/save`,data,{headers:this.jsonHeaders});
   }
 
   getBidInfo(data):Observable<any>{
-    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/payment/paypal/bidinfo`,data,{headers:this.jsonHeaders});
+    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/orders/paypal/bidinfo`,data,{headers:this.jsonHeaders});
   }
 
   getSellerEmail(data):Observable<any>{
-    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/payment/paypal/selleremail`,data,{headers:this.jsonHeaders});
+    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/orders/paypal/selleremail`,data,{headers:this.jsonHeaders});
   }
 
   getPreferredPay(data):Observable<any>{
-    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/payment/paypal/preferredpay`,data,{headers:this.jsonHeaders});
+    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/orders/paypal/preferredpay`,data,{headers:this.jsonHeaders});
   }
 
   grabOrderId(data):Observable<any>{
-    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/payment/paypal/getid`,data,{headers:this.jsonHeaders});
+    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/orders/paypal/getid`,data,{headers:this.jsonHeaders});
   }
 
   confirmTransaction(data):Observable<any>{
-    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/payment/paypal/confirm`,data,{headers:this.jsonHeaders});
+    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/orders/paypal/confirm`,data,{headers:this.jsonHeaders});
   }
 
   deleteBidProcess(data):Observable<any>{
-    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/payment/paypal/deletebidprocess`,data,{headers:this.jsonHeaders});
+    return this.httpClient.post<any>(`${environment.API_URL}/api/v1/orders/paypal/deletebidprocess`,data,{headers:this.jsonHeaders});
   }
 
   getPayerAddress(data):Observable<Address>{
