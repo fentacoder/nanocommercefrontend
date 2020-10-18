@@ -1,0 +1,40 @@
+<div [ngStyle]="{'width':'100vw','display':'flex','flex-direction':'column','justify-content':'center','padding':'0 5vw'}">
+  <div [ngStyle]="{'width':'100vw'}">
+
+    <!--div for the rest of the post-->
+    <div [ngStyle]="{'height': '100%','width': '100%'}">
+      <!--product metadata-->
+      <div [ngStyle]="{'display': 'flex','width':'100%','flex-direction': 'column'}">
+        <p [ngClass]="{'hobyn-exchange-post-info':true}" [ngStyle] = "{'color': '#ccc','font-weight': 'normal'}">{{offer?.createdAt}}</p>
+        <p [ngClass]="{'hobyn-exchange-post-info':true}">{{offer?.title}}</p>
+        <p [ngClass]="{'hobyn-exchange-post-info':true}">{{offer?.price}}</p>
+        <p [ngClass]="{'hobyn-exchange-post-info':true}" [ngStyle] = "{'font-weight': 'normal'}">{{offer?.details}}</p>
+      </div>
+
+      <!--product images-->
+      <div [ngStyle]="{'display': 'flex','margin': '3vh 0'}">
+        <img src="{{image}}" [ngStyle]="{'margin-left': '1vh','width':'20vw','height':'35vh'}" [ngClass]="{'pic-placeholder':true}"
+        *ngFor="let image of imageList">
+      </div>
+
+      <div [ngStyle]="{'margin-bottom':'10vh'}">
+        <p [ngStyle]="{'width':'80%','font-size':'3rem','margin-bottom':'1vh','line-height':'10vh'}" *ngFor="let highlight of offer?.highlights">
+          &mdash;{{highlight}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!--buy and offer buttons-->
+  <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'center','position':'fixed',
+  'bottom':'0','left':'0','z-index':'2','background':'rgb(64,255,0)','height':'7vh','align-items':'center','padding':'0 5vw'}"
+  *ngIf="userId !== ownerId">
+  <div id="{{'productbid>' + offer?.id}}" [ngStyle]="{'background': '#888','color': 'white','padding':'5px',
+      'border': 'none','border-radius':'10px','cursor':'pointer','height':'auto',
+    'margin-left':'auto'}" (click)="bidRedirect($event)">Buy</div>
+  <div id="{{'productoffer>' + offer?.id}}" [ngStyle]="{'background': '#ccc','color': 'black','padding':'5px',
+  'border': 'none','border-radius':'10px','cursor':'pointer','height':'auto','margin-left':'3vw'}"
+  (click)="offerRedirect()">Offer</div>
+  </div>
+
+</div>

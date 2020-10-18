@@ -1,0 +1,86 @@
+<div [ngStyle]="{'width':'100vw','display':'flex','flex-direction':'column','align-items':'center'}">
+  <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'end','margin-bottom':'1vh'}">
+    <div [ngClass]="{'app-form-btn':true}" [ngStyle]="{'background':'rgb(64,255,0)','color':'white','cursor':'pointer','margin-right':'5vw',
+    'width':'auto','margin-left':'auto','font-weight':'bold','margin-top':'1vh'}" (click)="chatListRedirect()">Chats</div>
+  </div>
+  <p [ngStyle]="{'width':'100%','text-align':'center','font-size':'3rem','font-weight':'bold',
+    'margin':'3vh 0'}">Messages</p>
+  <div [ngStyle]="{'width':'70vw','height':'100%','overflow-y':'scroll'}"
+    *ngFor="let message of messages">
+
+    <div id="{{'x-' + message?.id}}" [ngStyle]="{'width':'100%','font-size':'2rem','text-align':'end','cursor':'pointer'}"
+        (click)="removeMessage($event)">&times;</div>
+
+    <!--chat message-->
+    <div id="{{'chat-' + message?.id}}" [ngStyle]="{'width':'100%','height':'auto','display':'flex','flex-direction':'column','cursor':'pointer'}"
+      (click)="chatRedirect($event)" *ngIf="message?.type === 'chat'">
+
+      <div [ngStyle]="{'width':'100%','font-size':'2rem','text-align':'center','margin-bottom':'1vh','line-height':'10vh'}">
+        {{message?.senderName}} sent you a message.
+      </div>
+      <div [ngStyle]="{'width':'100%','color':'#ccc','text-align':'center'}">
+        {{message?.message.length > 30 ? message?.message.substring(0,27) + '...' : message?.message}}
+      </div>
+    </div>
+
+    <!--accept message-->
+    <div id="{{'accept-' + message?.id}}" [ngStyle]="{'width':'100%','height':'auto','display':'flex','flex-direction':'column','cursor':'pointer'}"
+      *ngIf="message?.type === 'accept'">
+      <div [ngStyle]="{'width':'100%','font-size':'2rem','text-align':'center','margin-bottom':'1vh','line-height':'5vh'}">
+        {{message?.senderName}} placed a bid on one of your products.
+      </div>
+      <div [ngStyle]="{'width':'100%','color':'#ccc','text-align':'center','margin-bottom':'1vh'}">
+        {{message?.displayMessage}}
+      </div>
+
+      <div [ngStyle]="{'width':'100%','color':'#ccc','display':'flex','justify-content':'center'}">
+        <div [ngStyle]="{'width':'50%','display':'flex','justify-content':'space-around'}">
+          <button id="{{'acceptno-' + message?.id}}" [ngStyle]="{'width':'40%','text-align':'center','cursor':'pointer',
+            'background':'red','color':'white','padding':'5px',
+            'border':'none','border-radius':'10px'}" (click)="declineBid($event)">Decline</button>
+          <button id="{{'acceptyes-' + message?.id}}" [ngStyle]="{'width':'40%','text-align':'center','cursor':'pointer',
+            'background':'rgb(64,255,0)','color':'white','padding':'5px',
+            'border':'none','border-radius':'10px'}" (click)="acceptBid($event)">Accept</button>
+        </div>
+      </div>
+    </div>
+
+    <!--bid message-->
+    <!--<div id="{{'bid-' + message?.id}}" [ngStyle]="{'width':'100%','height':'auto','display':'flex','flex-direction':'column','cursor':'pointer'}"
+      *ngIf="message?.type === 'bid'">
+
+      <div [ngStyle]="{'width':'100%','font-size':'2rem','text-align':'center'}">
+        {{message?.senderName}} accepted your bid on one of their products confirm below to complete the transaction.
+      </div>
+      <div [ngStyle]="{'width':'100%','color':'#ccc','text-align':'center'}">
+        {{message?.message}}
+      </div>
+
+      <div [ngStyle]="{'width':'100%','color':'#ccc','display':'flex','justify-content':'center'}">
+        <div [ngStyle]="{'width':'50%','display':'flex','justify-content':'space-around'}">
+          <button id="{{'offerno-' + message?.id}}" [ngStyle]="{'width':'40%','text-align':'center','cursor':'pointer',
+            'background':'red','color':'white','padding':'5px',
+            'border':'none','border-radius':'10px'}" (click)="cancelOffer($event)">Cancel</button>
+          <button id="{{'offeryes-' + message?.id}}" [ngStyle]="{'width':'40%','text-align':'center','cursor':'pointer',
+            'background':'rgb(64,255,0)','color':'white','padding':'5px',
+            'border':'none','border-radius':'10px'}" (click)="confirmOffer($event)">Confirm</button>
+        </div>
+      </div>
+    </div>-->
+
+    <!--chat message-->
+    <div id="{{'chat-' + message?.id}}" [ngStyle]="{'width':'100%','height':'auto','display':'flex','flex-direction':'column','cursor':'pointer'}"
+      *ngIf="message?.type === 'noreply'">
+
+      <div [ngStyle]="{'width':'100%','font-size':'2rem','text-align':'center'}">
+        {{message?.senderName}} sent you a message.
+      </div>
+      <div [ngStyle]="{'width':'100%','color':'#ccc','text-align':'center'}">
+        {{message?.message}}
+      </div>
+    </div>
+
+    <div [ngStyle]="{'width':'100%','height':'3px','background':'#888','border':'none',
+      'border-radius':'50%'}"></div>
+  </div>
+</div>

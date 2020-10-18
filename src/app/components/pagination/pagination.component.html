@@ -1,0 +1,38 @@
+<div [ngStyle]="{'width':'50vw','height':'7vh','display':'flex','justify-content':'center',
+  'overflow':'hidden','border':'none','border-radius':'10px'}">
+  <!--arrow to take user to first page-->
+  <div [ngStyle]="{'width':'auto','height':'100%','padding':'5px','color':'blue',
+    'background':'white','cursor':'pointer'}" (click)="firstPage()">&lt; &lt;</div>
+
+  <!--arrow to go to previous page-->
+  <div [ngStyle]="{'width':'auto','height':'100%','padding':'5px','color':'blue',
+    'background':'white','cursor':'pointer'}" (click)="previousPage()">&lt;</div>
+
+  <!--pages div-->
+  <div [ngStyle]="{'width':'auto','height':'100%','display':'flex','border-left':'1px black solid',
+    'border-right':'1px black solid'}">
+    <div id="page1" [ngClass]="pageClass1" *ngIf="page1Aval" (click)="changePage($event)">
+      {{pageMin}}
+    </div>
+    <div id="page2" [ngClass]="pageClass2" *ngIf="page2Aval" (click)="changePage($event)">
+      {{pageMin + 1}}
+    </div>
+    <div id="page3" [ngClass]="pageClass3" *ngIf="page3Aval" (click)="changePage($event)">
+      {{pageMin + 2}}
+    </div>
+    <div id="page4" [ngClass]="pageClass4" *ngIf="page4Aval" (click)="changePage($event)">
+      {{pageMin + 3}}
+    </div>
+    <div id="page5" [ngClass]="pageClass5" *ngIf="page5Aval" (click)="changePage($event)">
+      {{pageMin + 4}}
+    </div>
+  </div>
+
+  <!--arrow to go to next page-->
+  <div [ngStyle]="{'width':'auto','height':'100%','padding':'5px','color':'blue',
+    'background':'white','cursor':'pointer'}" (click)="nextPage()">&gt;</div>
+
+    <!--arrow to take user to last page-->
+  <div [ngStyle]="{'width':'auto','height':'100%','padding':'5px','color':'blue',
+  'background':'white','cursor':'pointer'}" (click)="lastPage()">&gt; &gt;</div>
+</div>

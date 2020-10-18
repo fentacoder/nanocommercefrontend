@@ -1,0 +1,42 @@
+<div [ngClass]="{'pay-method-cont':true}">
+  <!--
+    <form #paymentForm="ngForm" method="POST" [ngClass]="{'app-form': true}" (ngSubmit) = submitStripePayment(paymentForm.value)>
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '5rem','font-weight': 'bold','margin-bottom': '1vh'}">Hobyn</p>
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '1rem','font-weight': 'bold','margin-bottom': '1vh'}">
+        Pay with
+      </p>
+
+      <input placeholder="Card number" type="number" [ngClass]="{'app-input': true}" name="cardNumber" [(ngModel)] = "cardNumber">
+      <div [ngStyle]="{'margin-bottom':'1vh','display':'flex','width':'40%'}">
+        <input placeholder="1" type="number" [ngClass]="{'app-input': true}" [ngStyle]="{'width':'50%'}" name="expMonth" [(ngModel)] = "expMonth">
+        /
+        <input placeholder="2020" type="number" [ngClass]="{'app-input': true}" [ngStyle]="{'width':'50%'}" name="expYear" [(ngModel)] = "expYear">
+      </div>
+
+      <input placeholder="CVV/CVC" type="password" [ngClass]="{'app-input': true}" name="cvv" [(ngModel)] = "cvv">
+
+      <input type="submit" value="Sign Up" [ngClass]="{'app-form-btn': true}">
+    </form>-->
+
+    <!-- Display a stripe payment form -->
+    <!-- <form (ngSubmit)="checkout()" class="checkout" *ngIf="expand;else showStripeBtn">
+      <label for="card-info">Card Info</label>
+      <div id="form-field">
+          <div id="card-info" #cardInfo></div>
+          <button id="submit-button" type="submit">
+              Pay ${{totalPrice}}
+          </button>
+          <div id="card-errors" role="alert" *ngIf="cardError">
+              <span style="color: #f44336">cancel</span>
+              &nbsp;{{ cardError }}
+          </div>
+      </div>
+    </form> -->
+
+    <ng-template #showStripeBtn>
+      <button [ngStyle]="{'width':'100%','display':'block','margin':'3vh 10vw','border-radius':'10px',
+      'border':'none','cursor':'pointer','text-align':'center'}" (click)="onMethodClicked()">Stripe</button>
+    </ng-template>
+</div>

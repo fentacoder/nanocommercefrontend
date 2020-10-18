@@ -1,0 +1,60 @@
+<p [ngStyle]="{'text-align':'center','font-size':'5rem','font-weight':'bold','margin':'3vh 0'}">Offer</p>
+
+<div [ngStyle]="{'display':'flex','width':'100%','justify-content':'space-around','padding':'0 5px'}">
+
+  <!--offer info-->
+  <div [ngStyle]="{'display':'flex','width':'50%','flex-direction':'column'}">
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','font-size':'3rem','margin-bottom':'1vh'}">{{offer?.title}}</p>
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','margin-bottom':'1vh'}">{{hostName}}</p>
+    <img src="{{offer?.image}}" alt="offer image" *ngIf="offer?.image">
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','margin-bottom':'1vh'}">{{offer?.details}}</p>
+  </div>
+
+  <!--bid info-->
+  <div [ngStyle]="{'display':'flex','width':'50%','flex-direction':'column'}">
+
+    <div>
+      <!--price-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around','margin-bottom':'1vh',
+          'align-items':'center'}">
+        <p [ngStyle]="{'font-size':'2rem'}">{{offer?.askingPrice}}</p>
+      </div>
+
+      <!--break date-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around','margin-bottom':'2vh',
+      'align-items':'center'}">
+        <p [ngStyle]="{'font-size':'2rem','font-weight':'bold'}">{{offer?.date}}</p>
+        <p [ngStyle]="{'font-size':'2rem'}">{{offer?.time}}</p>
+      </div>
+
+      <!--break description-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around',
+      'align-items':'center'}">
+      <p [ngStyle]="{'font-size':'2rem'}">{{offer?.breakDescription}}</p>
+      </div>
+
+      <select [ngClass]="{'app-input':true}" [(ngModel)]="teamNumber">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- cancel and purchase btns-->
+<div [ngStyle]="{'position':'fixed','bottom':'0','left':'0','border-top':'1px #888 solid','height':'10vh'}"
+  *ngIf="pricePresent && hostId !== userId">
+  <div [ngStyle]="{'display':'flex','margin-left':'auto','width':'30%','justify-content':'space-around',
+    'height':'100%','alignItems':'center'}">
+    <a [routerLink]="['gamebreaks']" [ngStyle]="{'padding':'5px',
+      'background':'transparent','border':'1px #888 solid','border-radius':'10px','color':'#888','cursor':'pointer'}">
+      Cancel
+    </a>
+
+    <button (ngClick)="purchaseBreak()" [ngStyle]="{'padding':'5px','background':'rgb(31,30,30)','border':'none',
+      'border-radius':'10px','color':'white','cursor':'pointer'}">Purchase</button>
+  </div>
+</div>

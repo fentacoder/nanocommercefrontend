@@ -1,0 +1,59 @@
+<div [ngStyle]="{'display':'flex','justify-content':'center','width':'100vw','height':'100%'}">
+
+  <app-loading *ngIf="loading" [ngStyle]="{'position':'fixed','top':'20vh'}"></app-loading>
+
+  <div [ngClass]="{'form-container': true}">
+
+    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert alert-danger">
+      <div *ngIf="email.errors.required">
+        Email is required.
+      </div>
+    </div>
+
+    <div *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="alert alert-danger">
+      <div *ngIf="password.errors.required">
+        Password is required.
+      </div>
+    </div>
+
+    <div *ngIf="invalidCredentials"
+        class="alert alert-danger">
+        Invalid email or password.
+    </div>
+
+    <form #userLogin="ngForm" method="POST" [ngClass]="{'app-form': true}" (ngSubmit)="onLoginUser(userLogin.value)">
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '3rem','font-weight': 'bold','margin': '3vh 0'}">Nano Commerce</p>
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-weight': 'bold','margin-bottom': '1vh'}">
+        Your place for auctioning off products
+      </p>
+
+      <input placeholder="Email" type="email" [ngClass]="{'app-input': true}" name="email" ngModel
+      required #email="ngModel">
+      <input placeholder="Password" type="password" [ngClass]="{'app-input': true}" name="password" ngModel
+      required #password="ngModel">
+
+      <input type="submit" value="Login" [ngClass]="{'app-form-btn': true}">
+    </form>
+
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-weight': 'bold','margin-bottom': '1vh'}">
+      New here? <a [routerLink]="['/register']" [ngStyle]="{'color': 'black','cursor': 'pointer'}">Create an account</a>
+    </p>
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-weight': 'bold','margin-bottom': '2vh'}">
+      Or sign in with
+    </p>
+    <p [ngStyle]="{'font-size':'3rem','width': '100%','text-align': 'center','font-weight': 'bold','margin-bottom': '1vh',
+      'cursor':'pointer'}"
+      (click)="facebookLogin()">
+      Facebook
+    </p>
+    <br>
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-weight': 'bold','margin-bottom': '1vh',
+        'position': 'relative','bottom': '0'}">
+        <a [routerLink]="['/forgotpassword']" [ngStyle]="{'color': 'black','cursor': 'pointer','text-decoration': 'none'}">forgot password?</a>
+    </p>
+  </div>
+</div>

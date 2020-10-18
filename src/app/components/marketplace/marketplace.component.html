@@ -1,0 +1,79 @@
+<div [ngStyle]="{'display':'flex','margin':'1vh auto','justify-content':'center','flex-direction':'column',
+  'width':'100vw'}">
+
+ <!--filter icon container-->
+ <!--
+ <div [ngStyle]="{'display':'flex','justify-content':'end'}">
+    <div [ngStyle]="{'position': 'relative','top':'0','right':'0','margin-right':'2vh',
+      'background': 'transparent','width':'10px','height':'10px'}">
+      <div [ngStyle]="{'width':'100%','height':'1vh','margin-bottom':'1px','background':'black'}"></div>
+      <div [ngStyle]="{'width':'100%','height':'1vh','margin-bottom':'1px','background':'black'}"></div>
+      <div [ngStyle]="{'width':'100%','height':'1vh','background':'black'}"></div>
+    </div>
+ </div>-->
+
+ <app-loading *ngIf="loading"></app-loading>
+
+ <!--most popular section-->
+ <section [ngStyle]="{'width':'100%','margin-bottom':'25vh','height':'30vh'}">
+  <!--section header-->
+  <div [ngStyle]="{'display':'flex','justify-content':'space-around','margin-bottom':'1vh','width':'100%'}">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold'}">Most Popular</p>
+    <div id="mp" [ngStyle]="{'text-decoration':'none','color':'black','cursor':'pointer'}" (click)="listAllRedirect($event)">See all</div>
+  </div>
+
+  <!--most popular three posts-->
+  <div [ngStyle]="{'display':'grid','grid-template-columns': 'repeat(3,1fr)','column-gap': '2vw','padding':'0 20vw'}">
+
+
+    <div [ngStyle]="{'overflow':'hidden'}" *ngFor="let popularProduct of popularList">
+      <div id="{{'product>' + popularProduct?.id}}" [ngStyle]="{'cursor':'pointer','color':'black','text-decoration':'none','height':'30vh','width':'15vw'}" [ngClass]="{'pic-placeholder':true}" (click)="productRedirect($event)">
+        <img src="{{popularProduct?.image}}" alt="most popular posts" [ngStyle]="{'border-radius':'5px','border':'none','width':'100%','height':'100%'}">
+      </div>
+      <p [ngStyle]="{'margin-top':'1vh','width':'15vw','text-align':'center','font-weight':'bold'}">{{popularProduct?.title}}</p>
+   </div>
+  </div>
+ </section>
+
+ <!--most available section-->
+ <section [ngStyle]="{'width':'100%','margin-bottom':'25vh','height':'30vh'}">
+  <!--section header-->
+  <div [ngStyle]="{'display':'flex','justify-content':'space-around','margin-bottom':'1vh'}">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold'}">Available Listings</p>
+    <div [ngStyle]="{'text-decoration':'none','color':'black','cursor':'pointer'}"
+    id="ma" (click)="listAllRedirect($event)">See all</div>
+  </div>
+
+  <!--most popular three posts-->
+  <div [ngStyle]="{'display':'grid','grid-template-columns': 'repeat(3,1fr)','column-gap': '2vw','padding':'0 20vw'}">
+
+    <div [ngStyle]="{'overflow':'hidden'}" *ngFor="let availableProduct of availableList">
+      <div id="{{'product>' + availableProduct?.id}}" [ngStyle]="{'cursor':'pointer','color':'black','text-decoration':'none','height':'30vh','width':'15vw'}" [ngClass]="{'pic-placeholder':true}" (click)="productRedirect($event)">
+        <img src="{{availableProduct?.image}}" alt="most popular posts" [ngStyle]="{'border-radius':'5px','border':'none','width':'100%','height':'100%'}">
+       </div>
+      <p [ngStyle]="{'margin-top':'1vh','width':'15vw','text-align':'center','font-weight':'bold'}">{{availableProduct?.title}}</p>
+    </div>
+  </div>
+ </section>
+
+ <!--most recent section-->
+ <section [ngStyle]="{'width':'100%','height':'30vh'}">
+  <!--section header-->
+  <div [ngStyle]="{'display':'flex','justify-content':'space-around','margin-bottom':'1vh'}">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold'}">Recently Listed</p>
+    <div [ngStyle]="{'text-decoration':'none','color':'black','cursor':'pointer'}"
+    id="rl" (click)="listAllRedirect($event)">See all</div>
+  </div>
+
+  <!--most popular three posts-->
+  <div [ngStyle]="{'display':'grid','grid-template-columns': 'repeat(3,1fr)','column-gap': '2vw','padding':'0 20vw'}">
+
+    <div [ngStyle]="{'overflow':'hidden'}" *ngFor="let recentProduct of recentList">
+      <div id="{{'product>' + recentProduct?.id}}" [ngStyle]="{'cursor':'pointer','color':'black','text-decoration':'none','height':'30vh','width':'15vw'}" [ngClass]="{'pic-placeholder':true}" (click)="productRedirect($event)">
+        <img src="{{recentProduct?.image}}" alt="most popular posts" [ngStyle]="{'border-radius':'5px','border':'none','width':'100%','height':'100%'}">
+      </div>
+     <p [ngStyle]="{'margin-top':'1vh','width':'15vw','text-align':'center','font-weight':'bold'}">{{recentProduct?.title}}</p>
+    </div>
+  </div>
+ </section>
+</div>

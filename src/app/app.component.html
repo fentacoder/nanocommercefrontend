@@ -1,0 +1,6 @@
+<!--nav bar-->
+<app-nav-bar [newMessages]="newMessages" [count]="messageCount"></app-nav-bar>
+
+<router-outlet (newMessage)="notify($event)"></router-outlet>
+<footer [ngStyle]="{'position':'fixed','bottom':'0','left':'0','width':'100vw','background':'blue',
+  'height':'1vh'}"></footer>

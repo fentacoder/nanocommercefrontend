@@ -1,0 +1,108 @@
+<div [ngStyle]="{'display':'flex','justify-content':'center','width':'100vw',
+'height':'100%','margin':'5vh auto'}">
+  <div [ngClass]="{'form-container': true}">
+    <form #activityForm="ngForm" method="POST" [ngClass]="{'app-form': true}" (ngSubmit)="submitActivity(activityForm.value)"
+      enctype="multipart/form-data" [ngStyle]="{'padding':'10px 0'}">
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '5rem','font-weight': 'bold','margin-bottom': '5vh','line-height':'10vh'}">Create Activity</p>
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '1rem','font-weight': 'bold','margin-bottom': '1vh'}">
+        Submit your activity details below
+      </p>
+
+      <div *ngIf="title.invalid && (title.dirty || title.touched)"
+        class="alert alert-danger">
+        <div *ngIf="title.errors.required">
+          Title is required.
+        </div>
+        <div *ngIf="title.errors.maxlength">
+          Title cannot be more than 100 characters long.
+        </div>
+        <div *ngIf="title.errors.minlength">
+          Title must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="location.invalid && (location.dirty || location.touched)"
+        class="alert alert-danger">
+        <div *ngIf="location.errors.required">
+          Location is required.
+        </div>
+        <div *ngIf="location.errors.maxlength">
+          Location cannot be more than 150 characters long.
+        </div>
+        <div *ngIf="location.errors.minlength">
+          Location must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="details.invalid && (details.dirty || details.touched)"
+        class="alert alert-danger">
+        <div *ngIf="details.errors.required">
+          Details is required.
+        </div>
+        <div *ngIf="details.errors.maxlength">
+          Details cannot be more than 500 characters long.
+        </div>
+        <div *ngIf="details.errors.minlength">
+          Details must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="breakDescription.invalid && (breakDescription.dirty || breakDescription.touched)"
+        class="alert alert-danger">
+        <div *ngIf="breakDescription.errors.maxlength">
+          breakDescription cannot be more than 500 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="activityDate.invalid && (activityDate.dirty || activityDate.touched)"
+        class="alert alert-danger">
+        <div *ngIf="activityDate.errors.required">
+          Activity date is required.
+        </div>
+        <div *ngIf="activityDate.errors.maxlength">
+          Activity date cannot be more than 100 characters long.
+        </div>
+        <div *ngIf="activityDate.errors.minlength">
+          Activity date must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="activityTime.invalid && (activityTime.dirty || activityTime.touched)"
+        class="alert alert-danger">
+        <div *ngIf="activityTime.errors.required">
+          Activity time is required.
+        </div>
+        <div *ngIf="activityTime.errors.maxlength">
+          Activity time cannot be more than 100 characters long.
+        </div>
+        <div *ngIf="activityTime.errors.minlength">
+          Activity time must be at least 3 characters long.
+        </div>
+      </div>
+
+      <input placeholder="Title required" type="text" [ngClass]="{'app-input': true}" name="title" ngModel
+      required minlength="3" maxlength="100" #title="ngModel">
+      <input placeholder="Location (online) required" type="text" [ngClass]="{'app-input': true}" name="location" ngModel
+      required minlength="3" maxlength="100" #location="ngModel">
+      <p [ngStyle]="{'width':'100%','text-align':'center','font-size':'2rem','font-weight':'bold','margin':'1vh 0'}">image required</p>
+      <input placeholder="Required image" type="file" [ngClass]="{'app-input': true}" name="image" (change)="onImageChange($event)">
+      <input placeholder="Price to attend optional" type="number" [ngClass]="{'app-input': true}" name="askingPrice" [(ngModel)]="askingPrice">
+
+      <textarea name="details" placeholder="Details required" ngModel rows="10" [ngClass]="{'app-textarea':true}"
+      required minlength="3" maxlength="100" #details="ngModel"></textarea>
+
+      <textarea name="breakDescription" placeholder="Break description optional" ngModel rows="10" [ngClass]="{'app-textarea':true}"
+      maxlength="500" #breakDescription="ngModel"></textarea>
+
+      <input placeholder="Date of activity required" type="text" [ngClass]="{'app-input': true}" name="activityDate" ngModel
+      required minlength="3" maxlength="100" #activityDate="ngModel">
+      <input placeholder="Time of activity required" type="text" [ngClass]="{'app-input': true}" name="activityTime" ngModel
+      required minlength="3" maxlength="100" #activityTime="ngModel">
+
+      <input type="submit" value="Submit Offer" [ngClass]="{'app-form-btn': true}">
+    </form>
+  </div>
+
+</div>

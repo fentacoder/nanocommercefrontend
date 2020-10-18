@@ -1,0 +1,32 @@
+<div [ngStyle]="{'width':'80%','height':'100%','display':'block','margin':'5vh auto'}">
+  <!--article title-->
+  <p [ngStyle]="{'width':'100%','font-size':'5rem','font-weight':'bold','margin-bottom':'1vh','text-align':'center'}">
+    {{article?.title}}
+  </p>
+
+  <!--article image-->
+  <img src="{{article?.image}}" alt="{{article.title}}" [ngClass]="{'pic-placeholder':true}" *ngIf="article?.image">
+
+  <!--article image caption-->
+  <p [ngStyle]="{'width':'100%','font-weight':'bold','margin-bottom':'3vh','text-align':'center'}">
+    {{article?.imageCaption}}
+  </p>
+
+  <p [ngStyle]="{'width':'100%','margin-bottom':'1vh','text-align':'center'}">
+    {{article?.description}}
+  </p>
+
+</div>
+
+<div [ngStyle]="{'position':'fixed','bottom':'0','left':'0','width':'100%','height':'5vh','border-top':'1px black solid'}">
+  <div [ngStyle]="{'width': '40%','display':'flex','justify-content':'space-around'}">
+    <button [ngStyle]="{'padding':'5px','color':'#ccc','background':'transparent','border':'#ccc 1px solid',
+      'border-radius':'10px','cursor':'pointer'}" (ngClick)="previousArticle()"
+        *ngIf="previousArticleIds?.length > 0">Previous</button>
+
+    <button [ngStyle]="{'padding':'5px','color':'#ccc','background':'transparent','border':'#ccc 1px solid',
+    'border-radius':'10px','cursor':'pointer'}" (ngClick)="nextArticle()"
+    >Next
+    </button>
+  </div>
+</div>

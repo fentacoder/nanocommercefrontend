@@ -1,0 +1,80 @@
+<div [ngStyle]="{'display':'flex','width':'100vw','margin-top':'1vh'}">
+  <div [ngStyle]="{'display':'flex','width':'45vw','align-items':'space-around','flex-direction':'column'}">
+    <!--profile header-->
+    <div [ngStyle]="{'width':'100%','height':'auto','margin-bottom':'3vh','padding':'0 3vh'}">
+      <!--profile image-->
+      <div [ngStyle]="{'width':'50%','height':'35vh','border':'none','border-radius':'5px','background':'#ccc','overflow':'hidden',
+        'margin-bottom':'3vh'}">
+        <img src="{{profile?.image}}" alt="{{profile?.firstName}}" *ngIf="profile?.image;else noProfileImage" [ngStyle]="{'width':'100%','height':'100%'}">
+        <ng-template #noProfileImage>
+          <p [ngStyle]="{'display':'block','margin':'auto','text-align':'center'}">
+            User photo
+          </p>
+        </ng-template>
+      </div>
+
+      <!--profile metadata-->
+      <div [ngStyle]="{'width':'40vw','height':'40vh','display':'flex','flex-direction':'column'}">
+        <!--profile name-->
+        <p [ngStyle]="{'font-size':'3rem','font-weight':'bold','margin-bottom':'4vh'}">{{profile?.firstName}}</p>
+        <p [ngStyle]="{'font-size':'3rem','font-weight':'bold','margin-bottom':'4vh'}">{{profile?.lastName}}</p>
+
+        <!--twitter name-->
+        <p [ngStyle]="{'color':'#ccc','margin-bottom':'1vh'}"
+          *ngIf="profile?.twitter;else noTwitter">Twitter username: {{profile?.twitter}}</p>
+        <ng-template #noTwitter>
+          <p [ngStyle]="{'margin-bottom':'1vh','color':'#ccc'}"
+          >@twitter</p>
+        </ng-template>
+
+        <!--email-->
+        <p [ngStyle]="{'color':'#ccc','margin-bottom':'3vh'}"
+          *ngIf="profile?.email;else noEmail">Email: {{profile?.email}}</p>
+        <ng-template #noEmail>
+          <p [ngStyle]="{'margin-bottom':'3vh','color':'#ccc'}"
+          >@email</p>
+        </ng-template>
+
+        <!--profile city and state-->
+        <p [ngStyle]="{'font-weight':'bold','margin-bottom':'1vh'}">
+          {{profile?.city + ', ' + profile?.state}}</p>
+
+        <p>{{profile?.bio}}</p>
+      </div>
+    </div>
+
+    <p [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold','margin-left':'3vh'}">Recent Activity</p>
+
+    <!--recent activities list-->
+    <div [ngStyle]="{'width':'100%','height':'50vh','overflow-y':'scroll','margin-left':'3vh'}">
+      <div [ngStyle]="{'display':'flex','flex-direction':'column'}" *ngFor="let activity of recentActivities">
+        <!--activity title-->
+        <div [ngStyle]="{'width':'100%'}">
+          <p [ngStyle]="{'font-weight':'bold'}">{{activity?.message}}</p>
+          <p *ngIf="activity?.location">via {{activity?.location}}</p>
+          <p [ngStyle]="{'color':'#ccc'}">{{activity?.timeStamp}}</p>
+        </div>
+
+      </div>
+
+      <!--separator-->
+      <div [ngStyle]="{'width':'100%','height':'1px','background':'#ccc','margin-bottom':'1vh'}">
+
+      </div>
+    </div>
+  </div>
+
+  <div [ngStyle]="{'width':'100%'}">
+    <!--other side of screen-->
+    <div [ngStyle]="{'display':'flex','justify-content':'space-around','cursor':'pointer','height':'auto','align-items':'center'}"
+      (click)="redirectToEdit()">
+      <!--edit profile button-->
+      <div [ngStyle]="{'background':'#888','padding':'0 5px','color':'white','border':'none','border-radius':'10px',
+        'display':'flex','justify-content':'space-around','align-items':'center'}">
+        <img src="../../../assets/cog.png" alt="edit profile" [ngStyle]="{'width':'20px','height':'20px'}">
+        <p [ngStyle]="{'width':'auto','height':'100%'}">Edit Profile</p>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,26 @@
+<div [ngStyle]="{'display':'flex','margin':'auto','width':'100vw','text-align':'center','justify-content':'center'}">
+  <!--profile hover list options-->
+  <div [ngStyle]="{'width':'80%','color': 'black','font-weight': 'bold','font-size': '3rem','margin-top':'3vh',
+    'display':'flex','flex-direction':'column','justify-content':'center'}">
+    <!--<a [routerLink]="['/#']" [ngClass]="{'profile-hover-list-option':true}">Favorites</a>-->
+
+    <a [routerLink]="['/user/bids']" [ngClass]="{'profile-hover-list-option':true}" *ngIf="loggedIn">Your Bids</a>
+    <a [routerLink]="['/user/products']" [ngClass]="{'profile-hover-list-option':true}" *ngIf="loggedIn">Currently Selling</a>
+
+    <a [routerLink]="['/user/viewed']" [ngClass]="{'profile-hover-list-option':true}">Recently Viewed</a>
+
+    <!--<a [routerLink]="['/#']" [ngClass]="{'profile-hover-list-option':true}">Payment Options</a>-->
+    <a [routerLink]="['/user/shippingaddress']" [ngClass]="{'profile-hover-list-option':true}" *ngIf="loggedIn">Shipping Address</a>
+
+    <a [routerLink]="['/profile/user']" [ngClass]="{'profile-hover-list-option':true}" *ngIf="loggedIn">Your Profile</a>
+
+    <a [routerLink]="['/user/activities']" [ngClass]="{'profile-hover-list-option':true}" *ngIf="loggedIn">Your Activities</a>
+
+    <a [routerLink]="['/terms']" [ngClass]="{'profile-hover-list-option':true}">Terms & Conditions</a>
+    <a [routerLink]="['/privacypolicy']" [ngClass]="{'profile-hover-list-option':true}">Privacy Policy</a>
+    <button [ngClass]="{'profile-hover-list-option':true}" [ngStyle]="{'font-size':'2rem'}"
+      (click)="signUserOut()" *ngIf="loggedIn">Sign Out</button>
+  </div>
+
+
+</div>

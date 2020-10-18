@@ -1,0 +1,83 @@
+<div [ngStyle]="{'display':'flex','justify-content':'center','width':'100vw',
+'height':'100%','margin':'5vh auto'}">
+  <div [ngClass]="{'form-container': true}">
+  <form #offerForm="ngForm" method="POST" [ngClass]="{'app-form': true}" (ngSubmit)="submitOffer(offerForm.value)"
+    enctype="multipart/form-data" [ngStyle]="{'padding':'10px 0'}">
+
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '5rem','font-weight': 'bold','margin-top':'1vh','margin-bottom': '5vh'}">Offer</p>
+
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '1rem','font-weight': 'bold','margin-bottom': '1vh'}">
+      Submit your offer details below
+    </p>
+
+    <div *ngIf="title.invalid && (title.dirty || title.touched)"
+      class="alert alert-danger">
+      <div *ngIf="title.errors.required">
+        Title is required.
+      </div>
+      <div *ngIf="title.errors.maxlength">
+        Title cannot be more than 200 characters long.
+      </div>
+      <div *ngIf="title.errors.minlength">
+        Title must be at least 3 characters long.
+      </div>
+    </div>
+
+    <div *ngIf="askingPrice.invalid && (askingPrice.dirty || askingPrice.touched)"
+      class="alert alert-danger">
+      <div *ngIf="askingPrice.errors.required">
+        Asking price is required.
+      </div>
+    </div>
+
+    <div *ngIf="shippingFee.invalid && (shippingFee.dirty || shippingFee.touched)"
+      class="alert alert-danger">
+      <div *ngIf="shippingFee.errors.required">
+        Shipping fee is required.
+      </div>
+    </div>
+
+    <div *ngIf="details.invalid && (details.dirty || details.touched)"
+      class="alert alert-danger">
+      <div *ngIf="details.errors.required">
+        Details is required.
+      </div>
+      <div *ngIf="details.errors.maxlength">
+        Details cannot be more than 500 characters long.
+      </div>
+      <div *ngIf="details.errors.minlength">
+        Details must be at least 3 characters long.
+      </div>
+    </div>
+
+    <input placeholder="Title" type="text" [ngClass]="{'app-input': true}" name="title" ngModel
+    required maxlength="200" minlength="3" #title="ngModel">
+    <p [ngStyle]="{'width':'100%','text-align':'center','font-size':'2rem','font-weight':'bold','margin':'2vh 0'}">At least one image is required</p>
+    <input placeholder="Required image" type="file" [ngClass]="{'app-input': true}" name="image1" (change)="onImage1Change($event)">
+    <input placeholder="Required image" type="file" [ngClass]="{'app-input': true}" name="image2" (change)="onImage2Change($event)">
+    <input placeholder="Required image" type="file" [ngClass]="{'app-input': true}" name="image3" (change)="onImage3Change($event)">
+    <label [ngStyle]="{'color':'red','margin': '1vh 0'}" *ngIf="priceError">Invalid price</label>
+    <input placeholder="Asking price required" type="number" [ngClass]="{'app-input': true}" name="askingPrice" ngModel
+      required #askingPrice="ngModel">
+
+    <input placeholder="Shipping fee required" type="number" [ngClass]="{'app-input': true}" name="shippingFee" ngModel required #shippingFee="ngModel">
+
+    <textarea name="details" placeholder="Details" ngModel rows="10" [ngClass]="{'app-textarea':true}"
+    required minlength="3" maxlength="500" #details="ngModel"></textarea>
+
+    <textarea name="highlight1" placeholder="Highlight #1" [(ngModel)]="highlight1" rows="10" [ngClass]="{'app-textarea':true}"></textarea>
+    <textarea name="highlight2" placeholder="Highlight #2" [(ngModel)]="highlight2" rows="10" [ngClass]="{'app-textarea':true}"></textarea>
+    <textarea name="highlight3" placeholder="Highlight #3" [(ngModel)]="highlight3" rows="10" [ngClass]="{'app-textarea':true}"></textarea>
+    <textarea name="highlight4" placeholder="Highlight #4" [(ngModel)]="highlight4" rows="10" [ngClass]="{'app-textarea':true}"></textarea>
+
+    <select name="preferredPay" [(ngModel)]="preferredPay" [ngClass]="{'app-input':true}">
+      <option value="paypal">PayPal</option>
+      <!-- <option value="stripe">Stripe (mastercard,visa,etc...)</option> -->
+    </select>
+
+
+    <input type="submit" value="Submit Offer" [ngClass]="{'app-form-btn': true}">
+    </form>
+  </div>
+
+</div>

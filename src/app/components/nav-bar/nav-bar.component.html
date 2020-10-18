@@ -1,0 +1,122 @@
+<header [ngClass]="{'app-navbar':true}">
+  <div [ngStyle]="{'display': 'flex','width':'100%','justify-content': 'space-around','margin-top':'3vh'}">
+
+    <!--title and search bar-->
+    <div [ngStyle]="{'display': 'flex','width':'100%','justify-content': 'space-around','z-index': '4',
+        'align-items':'center','height':'10vh'}">
+      <p [ngClass]="{'header-brand':true}" (click)="homeRedirect()">Nano Commerce</p>
+      <form #searchbar="ngForm" method="POST" (ngSubmit)="onSearch(searchbar.value)" [ngClass]="{'search-form':true}">
+        <img src="../../../assets/magnifying-glass.png" alt="magnifying glass" [ngStyle]="{'width': '20px','height':'20px',
+          'margin-left':'1vh','margin-top':'1vh'}">
+        <input type="search" [ngClass]="{'navbar-search-input': true}" placeholder="Search..."
+          [(ngModel)]="searchText" name="searchText" [ngStyle]="{'width':'80%'}">
+        <input [ngClass]="{'nav-search-btn':true}" value=">" type="submit">
+      </form>
+
+      <!--messages-->
+      <div>
+        <div *ngIf="newMessagesNum;else noNewMessages" [ngStyle]="{'width':'100%','color': 'black','font-weight': 'bold','cursor':'pointer','margin-left':'1vw'}"
+          (click)="messageRedirect()">
+          <div>
+            <img src="../../../assets/mail-icon.png" alt="new messages" [ngClass]="{'nav-img-btn':true}">
+            <div [ngStyle]="{'background': 'blue','position': 'relative','top': '1px','right': '1px',
+                'border': 'none','border-radius': '50%','z-index': '5','width':'30px','height':'30px'}"></div>
+          </div>
+          <span [ngClass]="{'nav-message-text':true}" [ngStyle]="{'z-index':'1'}">messages</span>
+        </div>
+        <ng-template #noNewMessages>
+          <div [ngStyle]="{'width':'100%','color': 'black','font-weight': 'bold','cursor':'pointer','margin-left':'1vw'}"
+          (click)="messageRedirect()">
+            <div>
+              <img src="../../../assets/mail-icon.png" alt="no new messages" [ngClass]="{'nav-img-btn':true}">
+            </div>
+            <span [ngClass]="{'nav-message-text':true}" [ngStyle]="{'z-index':'1'}">messages</span>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!--buttons-->
+    <div [ngStyle]="{'display': 'flex','width':'20%','justify-content': 'space-around','align-items':'center'}">
+      <a [routerLink]="['/offer']" [ngClass]="{'nav-sell-btn':true}">Sell</a>
+
+      <a [ngClass]="{'nav-img-btn':true}" [routerLink]="['/profilesettings']"
+        id="profileBtn">
+        <img src="../../../assets/profile.png" alt="profile"
+        [ngStyle]="{'width':'100%','height':'100%'}">
+      </a>
+
+      <div [ngClass]="{'nav-plus-btn':true}" (click)="toggleAdd()">
+        <img src="../../../assets/white-plus.png" alt="user add"
+        [ngStyle]="{'width':'100%','height':'100%'}">
+      </div>
+
+      <div [ngClass]="{'navbar-link-filter':true}" (click)="toggleLinks()">
+        <div [ngStyle]="{'width':'100%','height':'3px','background':'white','margin-bottom':'1px'}"></div>
+        <div [ngStyle]="{'width':'100%','height':'3px','background':'white','margin-bottom':'1px'}"></div>
+        <div [ngStyle]="{'width':'100%','height':'3px','background':'white'}"></div>
+      </div>
+
+      <div [ngClass]="{'navbar-filter-links':true}" *ngIf="linksActive">
+        <a [routerLink]="['/exchange']" [ngClass]="{'navlink': true}" [ngStyle]="{'text-align':'center'}">Converse</a>
+      <a [routerLink]="['/market']" [ngClass]="{'navlink': true}" [ngStyle]="{'text-align':'center'}">Marketplace</a>
+      <a [routerLink]="['/activities']" [ngClass]="{'navlink': true}" [ngStyle]="{'text-align':'center'}">Activities</a>
+      <a [routerLink]="['/faqs']" [ngClass]="{'navlink': true}" [ngStyle]="{'text-align':'center'}">FAQs</a>
+      <a [routerLink]="['/news']" [ngClass]="{'navlink': true}" [ngStyle]="{'text-align':'center'}">News</a>
+      </div>
+
+      <select [(ngModel)]="addSelection" [ngStyle]="{'width':'20vw','border':'none','border-radius':'10px',
+        'position':'fixed','top':'10vh','right':'3vw','z-index':'2'}"
+        (change)="addRedirect()" *ngIf="addOpen">
+        <option value="post">Add a post</option>
+        <option value="product">Add a product</option>
+        <option value="activity">Add an activity</option>
+      </select>
+
+    </div>
+  </div>
+
+  <!--nav page links-->
+  <nav [ngStyle]="{'display': 'flex','width':'100%','justify-content': 'center'}">
+    <div [ngClass]="{'navlink-container':true}">
+      <a [routerLink]="['/converse']" [ngClass]="{'navlink': true}">Converse</a>
+      <a [routerLink]="['/market']" [ngClass]="{'navlink': true}">Marketplace</a>
+      <a [routerLink]="['/activities']" [ngClass]="{'navlink': true}">Activities</a>
+      <a [routerLink]="['/faqs']" [ngClass]="{'navlink': true}">FAQs</a>
+      <a [routerLink]="['/news']" [ngClass]="{'navlink': true}">News</a>
+    </div>
+  </nav>
+</header>
+
+<div [ngClass]="{'settings-hover':true}" *ngIf="settingsHover">
+  <div [ngStyle]="{'width':'100%','margin-top':'1vh','margin-bottom':'3vh','font-weight':'bold',
+  'text-align':'end','color':'blue','cursor':'pointer','font-size':'3rem'}"
+  (click)="closeHover()">&times;</div>
+
+  <a [routerLink]="['/user/bids']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}" *ngIf="loggedIn">Your Bids</a>
+    <a [routerLink]="['/user/products']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}" *ngIf="loggedIn">Currently Selling</a>
+
+    <a [routerLink]="['/user/viewed']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}">Recently Viewed</a>
+
+    <a [routerLink]="['/user/shippingaddress']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}" *ngIf="loggedIn">Shipping Address</a>
+
+    <a [routerLink]="['/profile/user']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}" *ngIf="loggedIn">Your Profile</a>
+
+    <a [routerLink]="['/user/activities']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}" *ngIf="loggedIn">Your Activities</a>
+
+    <a [routerLink]="['/terms']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}">Terms & Conditions</a>
+
+    <a [routerLink]="['/privacypolicy']" [ngStyle]="{'width':'100%','margin-bottom':'3vh','font-weight':'bold',
+    'text-align':'center','color':'blue','cursor':'pointer','text-decoration':'none'}">Privacy Policy</a>
+
+    <button [ngStyle]="{'width':'100%','font-weight':'bold',
+    'text-align':'center','color':'white','cursor':'pointer'}"
+      (click)="signUserOut()" *ngIf="loggedIn">Sign Out</button>
+</div>

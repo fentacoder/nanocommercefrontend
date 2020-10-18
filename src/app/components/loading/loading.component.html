@@ -1,0 +1,5 @@
+<div [ngStyle]="{'width':'100%','display':'flex','flex-direction':'column','align-items':'center'}">
+  <img [ngStyle]="{'width':'15vw','height':'20vh'}" src="../../../assets/loading.png" alt="loading"
+  [@rotatedState]="state" (@rotatedState.done)="onDone($event)">
+  <p [ngStyle]="{'width':'100%','text-align':'center','color':'goldenrod','font-size':'2rem'}">Loading...</p>
+</div>

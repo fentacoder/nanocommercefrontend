@@ -1,0 +1,17 @@
+<div [ngStyle]="{'display':'flex','flex-direction':'column','align-items':'center','padding':'0 25vw','width':'100vw'}">
+  <p [ngStyle]="{'font-size':'5rem','font-weight':'bold','margin':'3vh 0','color':'rgb(64,255,0)','line-height':'10vh'}">Order Confirmed!</p>
+
+  <img src="../../../assets/checkmark.png" alt="check mark icon" [ngStyle]="{'width':'20vw','height':'25vh','margin-bottom':'1vh'}">
+
+  <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'center','margin-bottom':'3vh','line-height':'5vh'}">
+    Tracking will be sent to {{email}} when seller ships order.
+  </p>
+
+  <p [ngStyle]="{'font-weight':'bold','width':'100%','text-align':'center','margin-bottom':'3vh'}">
+    You should be redirected to the market in 5 seconds, if not click market below
+  </p>
+
+  <a [routerLink]="['/market']" [ngStyle]="{'background':'white','border-radius':'10px','padding':'5px',
+    'cursor':'pointer','text-decoration':'none','color':'rgb(64,255,0)','border':'rgb(64,255,0) 1px solid'}">Market</a>
+
+</div>

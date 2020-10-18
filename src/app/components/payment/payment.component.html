@@ -1,0 +1,13 @@
+<div *ngIf="!somethingIsExpanded" [ngStyle]="{'width':'100vw','padding':'15vh 25vw'}">
+  <p [ngStyle]="{'width':'100%','text-align':'center','line-height':'10vh','margin':'6vh 0','font-size':'3rem','font-weight':'bold'}">Please pay below, whichever payment option is below is the preferred payment for the seller</p>
+
+  <div [ngStyle]="{'width':'80%','display':'grid','grid-template-columns':'repeat(4,1fr)','margin':'3vh auto',
+    'row-gap':'3vh','column-gap':'3vh'}">
+    <!-- paypal -->
+    <app-paypal [paypalToken]="paypalToken" (payMethod)="changeMethod($event)"></app-paypal>
+
+    <!-- stripe -->
+    <app-stripe [stripeToken]="stripeToken" [stripeExpand]="stripeExpand"
+      [stripeResponse]="stripeResponse" (payMethod)="changeMethod($event)"></app-stripe>
+  </div>
+</div>

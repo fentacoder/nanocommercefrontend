@@ -1,0 +1,86 @@
+<p [ngStyle]="{'text-align':'center','font-size':'5rem','font-weight':'bold','margin':'6vh 0','width':'100vw'}">Bid</p>
+
+<div [ngStyle]="{'display':'flex','width':'100vw','justify-content':'space-around','padding':'0 5px'}">
+
+  <!--offer info-->
+  <div [ngStyle]="{'display':'flex','width':'50%','flex-direction':'column'}">
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','font-size':'3rem','margin-bottom':'3vh','line-height':'10vh'}">{{product?.title}}</p>
+
+    <!--image list-->
+    <div [ngStyle]="{'display':'flex','justify-content':'space-around','align-items':'center','overflow-x':'center','margin-bottom':'3vh'}">
+      <div [ngStyle]="{'width':'15vw','height':'35vh','border':'none','overflow':'hidden','border-radius':'10px'}" *ngFor="let image of imageList">
+        <img src="{{image}}" alt="product image" [ngStyle]="{'width':'100%','height':'100%','margin-right':'1vh'}">
+      </div>
+    </div>
+
+
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','font-size':'2rem','margin-bottom':'3vh'}">Asking price: {{product?.price}}</p>
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','margin-bottom':'3vh'}">{{product?.details}}</p>
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','font-size':'3rem','margin-bottom':'3vh','line-height':'10vh'}">PRODUCT HIGHLIGHTS</p>
+
+    <div [ngStyle]="{'margin-bottom':'10vh'}">
+      <p [ngStyle]="{'width':'100%','font-size':'3rem','margin-bottom':'1vh','line-height':'10vh'}" *ngFor="let highlight of product?.highlights">
+        &mdash;{{highlight}}
+      </p>
+    </div>
+  </div>
+
+  <!--bid info-->
+  <div [ngStyle]="{'display':'flex','width':'50%','flex-direction':'column'}">
+    <!--bid input-->
+    <label>Enter a number and then press "enter" or click out of the input</label>
+    <div [ngStyle]="{'border':'none','border-radius':'10px','background':'#888','display':'flex',
+      'justify-content':'center','overflow':'hidden'}">
+      <p [ngStyle]="{'font-weight':'bold','margin':'0 1vw'}">$</p>
+      <input type="number" placeholder="Enter bid" [(ngModel)]="bidPrice" [ngStyle]="{'background':'white',
+        'border-radius':'10px 0 0 10px','width':'100%'}" (change)="calculateFees()" name="bidPrice">
+    </div>
+
+    <!--resulting price from bid-->
+    <div>
+      <!--processing fee-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around','margin-bottom':'1vh',
+          'align-items':'center'}">
+        <p [ngStyle]="{'color':'#ccc','font-weight':'bold'}">Processing Fee:</p>
+        <p>{{processingFeeStr}}</p>
+      </div>
+
+      <!--separator-->
+      <div [ngStyle]="{'width':'100%','height':'1px','background':'1px #888 solid','margin-bottom':'1vh'}"></div>
+
+      <!--shipping fee-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around','margin-bottom':'2vh',
+      'align-items':'center'}">
+        <p [ngStyle]="{'color':'#ccc','font-weight':'bold'}">Shipping Fee:</p>
+        <p>{{product?.shippingFee}}</p>
+      </div>
+
+      <!--total fee-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around',
+      'align-items':'center'}">
+        <p [ngStyle]="{'color':'#ccc','font-weight':'bold'}">Total Price:</p>
+        <p>{{totalPriceStr}}</p>
+      </div>
+
+      <!--separator-->
+      <div [ngStyle]="{'width':'100%','height':'1px','background':'1px #888 solid','margin-bottom':'1vh'}"></div>
+
+      <textarea placeholder="Add message" [(ngModel)]="bidMessage" [ngStyle]="{'background':'transparent',
+        'width':'100%','padding':'0 5px'}" name="bidMessage"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- cancel and send btns-->
+<div [ngStyle]="{'position':'fixed','bottom':'0','left':'0','border-top':'1px #888 solid','height':'10vh','width':'100vw','background':'white'}">
+  <div [ngStyle]="{'display':'flex','margin-left':'auto','width':'100%','justify-content':'end',
+    'height':'100%','alignItems':'center','padding':'0 5vw'}">
+    <div (click)="cancelBid()" [ngStyle]="{'padding':'5px',
+      'background':'transparent','border':'1px #888 solid','border-radius':'10px','color':'#888','cursor':'pointer','margin-left':'auto'}">
+      Cancel
+    </div>
+
+    <button (click)="sendBid()" [ngStyle]="{'padding':'5px','background':'rgb(31,30,30)','border':'none',
+      'border-radius':'10px','color':'white','cursor':'pointer','width':'auto','margin-left':'3vh'}">Send</button>
+  </div>
+</div>

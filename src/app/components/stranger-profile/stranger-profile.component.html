@@ -1,0 +1,68 @@
+<div [ngStyle]="{'display':'flex','width':'80%','margin':'1vh auto','justify-content':'space-around'}">
+  <div [ngStyle]="{'display':'flex','width':'50%','justify-content':'space-around'}">
+    <!--profile header-->
+    <div [ngStyle]="{'width':'100%','height':'20vh','margin-bottom':'3vh'}">
+      <!--profile image-->
+      <div [ngStyle]="{'width':'50%','border':'none','border-radius':'5px','overflow':'hidden'}">
+        <img src="{{profile?.image}}" alt="{{profile?.firstName}}" *ngIf="profile?.image;else noProfileImage">
+        <ng-template #noProfileImage>
+          <p [ngStyle]="{'display':'block','margin':'auto','text-align':'center'}">
+            User photo
+          </p>
+        </ng-template>
+      </div>
+
+      <!--profile metadata-->
+      <div [ngStyle]="{'width':'50%','display':'flex','flex-direction':'column','overflow-y':'scroll'}">
+        <!--profile name-->
+        <p [ngStyle]="{'font-size':'3rem','font-weight':'bold','margin-bottom':'1vh'}">{{profile?.firstName}}</p>
+        <p [ngStyle]="{'font-size':'3rem','font-weight':'bold','margin-bottom':'1vh'}">{{profile?.lastName}}</p>
+
+        <!--twitter name-->
+        <p [ngStyle]="{'color':'#ccc','margin-bottom':'1vh'}"
+          *ngIf="profile.twitter;else noTwitter">{{profile?.firstName}}</p>
+        <ng-template #noTwitter>
+          <p [ngStyle]="{'margin-bottom':'1vh','color':'#ccc'}"
+          >@twitter</p>
+        </ng-template>
+
+        <!--email-->
+        <p [ngStyle]="{'color':'#ccc','margin-bottom':'3vh'}"
+          *ngIf="profile?.email;else noEmail">{{profile?.email}}</p>
+        <ng-template #noEmail>
+          <p [ngStyle]="{'margin-bottom':'3vh','color':'#ccc'}"
+          >@email</p>
+        </ng-template>
+
+        <!--profile city and state-->
+        <p [ngStyle]="{'font-weight':'bold','margin-bottom':'1vh'}">
+          {{profile?.city + ', ' + profile?.state}}</p>
+
+        <p>{{profile?.bio}}</p>
+      </div>
+    </div>
+
+    <p [ngStyle]="{'margin-bottom':'3vh','width':'100%','font-weight':'bold'}">Recent Activity</p>
+
+    <!--recent activities list-->
+    <div [ngStyle]="{'width':'100%','height':'50vh','overflow-y':'scroll'}" *ngFor="let activity of recentActivities">
+      <div [ngStyle]="{'display':'flex','flex-direction':'column'}">
+          <p [ngStyle]="{'font-weight':'bold','font-size':'2rem'}">{{activity?.message}}</p>
+          <p *ngIf="activity?.location">via {{activity?.location}}</p>
+          <p [ngStyle]="{'color':'#ccc'}">{{activity?.timeStamp}}</p>
+      </div>
+
+      <!--separator-->
+      <div [ngStyle]="{'width':'100%','height':'1vh','background':'#888','margin-bottom':'1vh'}">
+
+      </div>
+    </div>
+  </div>
+
+  <!--other side of screen-->
+  <div [ngStyle]="{'width':'50%'}">
+    <button [ngStyle]="{'background':'#888','padding':'5px','color':'white',
+      'border':'none','border-radius':'10px','cursor':'pointer','position':'relative','top':'0','right':'0'}"
+      (click)="contactUser()">Contact</button>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+<div [ngStyle]="{'display':'flex','justify-content':'center','width':'100vw','height':'100%'}">
+  <div [ngClass]="{'form-container': true}" [ngStyle]="{'margin-top':'3vh','margin-bottom':'3vh'}">
+    <form #userRegister="ngForm" method="POST" [ngClass]="{'app-form': true}" (ngSubmit)="onRegisterUser(userRegister.value)">
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '3rem','font-weight': 'bold','margin-bottom': '3vh'}">Nano Commerce</p>
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '1rem','font-weight': 'bold','margin-bottom': '1vh'}">
+        Your place to auction off products
+      </p>
+
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+          class="alert alert-danger">
+        <div *ngIf="firstName.errors.required">
+          First name is required.
+        </div>
+        <div *ngIf="firstName.errors.maxlength">
+          First name cannot be more than 150 characters long.
+        </div>
+        <div *ngIf="firstName.errors.minlength">
+          First name must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+          class="alert alert-danger">
+        <div *ngIf="lastName.errors.required">
+          Last name is required.
+        </div>
+        <div *ngIf="lastName.errors.maxlength">
+          Last name cannot be more than 150 characters long.
+        </div>
+        <div *ngIf="lastName.errors.minlength">
+          Last name must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert alert-danger">
+        <div *ngIf="email.errors.required">
+          Email is required.
+        </div>
+        <div *ngIf="email.errors.maxlength">
+          Email cannot be more than 150 characters long.
+        </div>
+        <div *ngIf="email.errors.minlength">
+          Email must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="alert alert-danger">
+        <div *ngIf="password.errors.required">
+          Password is required.
+        </div>
+        <div *ngIf="password.errors.maxlength">
+          Password cannot be more than 100 characters long.
+        </div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+          class="alert alert-danger">
+          <div >
+            Passwords must match if they don't already.
+          </div>
+        <div *ngIf="confirmPassword.errors.required">
+          Confirm password is required.
+        </div>
+        <div *ngIf="confirmPassword.errors.maxlength">
+          Confirm password cannot be more than 100 characters long.
+        </div>
+        <div *ngIf="confirmPassword.errors.minlength">
+          Confirm password must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+          class="alert alert-danger">
+        <div *ngIf="phoneNumber.errors.required">
+          Phone number is required.
+        </div>
+        <div *ngIf="phoneNumber.errors.maxlength">
+          Phone number cannot be more than 12 characters long.
+        </div>
+        <div *ngIf="phoneNumber.errors.minlength">
+          Phone number must be at least 9 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="city.invalid && (city.dirty || city.touched)"
+          class="alert alert-danger">
+        <div *ngIf="city.errors.maxlength">
+          City cannot be more than 150 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="state.invalid && (state.dirty || state.touched)"
+          class="alert alert-danger">
+        <div *ngIf="state.errors.maxlength">
+          State cannot be more than 150 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="accepted === false && submitted === true"
+          class="alert alert-danger">
+          You must accept our terms & conditions as well our privacy policy to proceed.
+      </div>
+
+      <input placeholder="First Name" type="text" [ngClass]="{'app-input': true}" name="firstName" ngModel
+        required maxlength="150" minlength="3" #firstName="ngModel">
+      <input placeholder="Last Name" type="text" [ngClass]="{'app-input': true}" name="lastName" ngModel
+      required maxlength="150" minlength="3" #lastName="ngModel">
+      <input placeholder="Email" type="email" [ngClass]="{'app-input': true}" name="email" ngModel
+      required maxlength="150" minlength="3" #email="ngModel">
+      <input placeholder="Password" type="password" [ngClass]="{'app-input': true}" name="password" ngModel
+      required maxlength="100" minlength="3" #password="ngModel">
+      <input placeholder="Confirm Password" type="password" [ngClass]="{'app-input': true}" name="confirmPassword" ngModel
+      required maxlength="100" minlength="3" #confirmPassword="ngModel">
+      <input placeholder="Phone Number Required For Password Recovery" type="number" [ngClass]="{'app-input': true}" name="phoneNumber" ngModel
+      required maxlength="12" minlength="9" #phoneNumber="ngModel">
+      <input placeholder="City Optional" type="text" [ngClass]="{'app-input': true}" name="city" ngModel
+      maxlength="150" #city="ngModel">
+      <input placeholder="State Optional" type="text" [ngClass]="{'app-input': true}" name="state" ngModel
+      maxlength="150" #state="ngModel">
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+        <input type="checkbox" name="agree" ngModel #agree="ngModel" [ngStyle]="{'margin-right':'1vh'}">
+        <p>I agree to the
+          <span [ngStyle]="{'color':'blue','cursor':'pointer'}" (click)="termsRedirect()">terms & conditions</span> as well as the
+          <span [ngStyle]="{'color':'blue','cursor':'pointer'}" (click)="privacyRedirect()">privacy policy</span>
+        </p>
+      </div>
+
+
+      <input type="submit" value="Sign Up" [ngClass]="{'app-form-btn': true}">
+    </form>
+
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '1rem','font-weight': 'bold','margin-bottom': '1vh'}">
+      Already have an account? <a [routerLink]="['/login']" [ngStyle]="{'color': 'black','cursor': 'pointer'}">Login</a>
+    </p>
+
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '1rem','font-weight': 'bold','margin-bottom': '1vh'}">
+      Or sign up with
+    </p>
+    <br>
+    <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '3rem','font-weight': 'bold','margin-bottom': '1vh',
+      'cursor':'pointer'}"
+      (click)="facebookSignUp()">
+      Facebook
+    </p>
+  </div>
+</div>

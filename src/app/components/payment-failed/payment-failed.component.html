@@ -1,0 +1,18 @@
+<div [ngStyle]="{'width':'100vw','height':'auto','padding':'15vh 25vw'}">
+  <div [ngStyle]="{'display':'flex','margin':'3vh auto','width':'60%','height':'auto','flex-direction':'column','padding':'10px',
+  'background':'rgba(255,4,0,0.3)','border':'none','border-radius':'10px'}">
+  <p [ngStyle]="{'width':'100%','text-align':'center','font-size':'3rem','font-weight':'bold',
+    'margin':'5vh 0','line-height':'10vh'}">Payment failed</p>
+
+  <p [ngStyle]="{'width':'100%','text-align':'center','font-weight':'bold',
+  'margin-bottom':'1vh'}">
+    If you used the stripe option, then maybe your card details were not correct.  If you used the paypal
+    option then check to make sure the email associated with your Nano Commerce account is the same as the email
+    associated with your paypal account.  You can always go to your profile in settings and change it.
+  </p>
+
+  <a [routerLink]="['/market']" [ngStyle]="{'width':'100%','padding':'5px','height':'6vh','text-align':'center','font-size':'2rem','font-weight':'bold',
+  'text-decoration':'none','color':'white','cursor':'pointer','background':'rgb(64,255,0)',
+  'border':'none','border-radius':'10px','display':'flex','align-items':'center','justify-content':'center'}">Try again</a>
+  </div>
+</div>

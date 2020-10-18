@@ -1,0 +1,173 @@
+<div [ngStyle]="{'width':'100vw','height':'auto','padding':'3vh 10vw'}">
+  <p [ngStyle]="{'font-size':'3rem','font-weight':'bold','width':'100%','text-align':'center',
+  'margin-bottom':'7vh'}">Frequently Asked Questions</p>
+
+  <div id="faq1" [ngStyle]="{'width':'100%','border-left':'blue 1vh solid','padding':'1vh','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'5vh','cursor':'pointer'}" (click)="toggleFaq($event)">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start','line-height':'5vh'}">What is Nano Commerce?</p>
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+      <img src="../../../assets/down-arrow.png" alt="drop down arrow" [ngStyle]="{'width':'20px','height':'20px'}">
+    </div>
+    <p [ngStyle]="{'width':'100%','text-align':'start'}" *ngIf="faq1">
+      Nano Commerce is a way for you to auction off products and get decent money for them.
+    </p>
+  </div>
+
+  <div id="faq2" [ngStyle]="{'width':'100%','border-left':'blue 1vh solid','padding':'1vh','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'5vh','cursor':'pointer'}" (click)="toggleFaq($event)">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start','line-height':'5vh'}">How does it work?</p>
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+      <img src="../../../assets/down-arrow.png" alt="drop down arrow" [ngStyle]="{'width':'20px','height':'20px'}">
+    </div>
+    <p [ngStyle]="{'width':'100%','text-align':'start'}" *ngIf="faq2">
+      You can put up products to auction away for money and accept the highest bid, you can make posts about things you
+      related to products and you can create activities such as product hosting parties as well.
+    </p>
+  </div>
+
+  <div id="faq3" [ngStyle]="{'width':'100%','border-left':'blue 1vh solid','padding':'1vh','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'5vh','cursor':'pointer'}" (click)="toggleFaq($event)">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start','line-height':'5vh'}">Is It Safe?</p>
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+      <img src="../../../assets/down-arrow.png" alt="drop down arrow" [ngStyle]="{'width':'20px','height':'20px'}">
+    </div>
+    <p [ngStyle]="{'width':'100%','text-align':'start'}" *ngIf="faq3">
+      One of the main things in mind when making a site like this is security.
+    </p>
+  </div>
+
+  <div id="faq4" [ngStyle]="{'width':'100%','border-left':'blue 1vh solid','padding':'1vh','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'5vh','cursor':'pointer'}" (click)="toggleFaq($event)">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start','line-height':'5vh'}">What if I get scammed?</p>
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+      <img src="../../../assets/down-arrow.png" alt="drop down arrow" [ngStyle]="{'width':'20px','height':'20px'}">
+    </div>
+    <p [ngStyle]="{'width':'100%','text-align':'start'}" *ngIf="faq4">
+      Report to us and they will be banned! You’re also covered by PayPal goods and service
+      policies so you will get refunded.
+    </p>
+  </div>
+
+  <div id="faq5" [ngStyle]="{'width':'100%','border-left':'blue 1vh solid','padding':'1vh','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'5vh','cursor':'pointer'}" (click)="toggleFaq($event)">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start','line-height':'5vh'}">Any features you want added?</p>
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+      <img src="../../../assets/down-arrow.png" alt="drop down arrow" [ngStyle]="{'width':'20px','height':'20px'}">
+    </div>
+    <p [ngStyle]="{'width':'100%','text-align':'start'}" *ngIf="faq5">
+      This is our first version of the product that we hope you can help us build to perfection! Any features you want
+      added let me know and I will add them.
+    </p>
+  </div>
+
+  <div id="faq6" [ngStyle]="{'width':'100%','border-left':'blue 1vh solid','padding':'1vh','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'5vh','cursor':'pointer'}" (click)="toggleFaq($event)">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start','line-height':'5vh'}">How do the fees work?</p>
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+      <img src="../../../assets/down-arrow.png" alt="drop down arrow" [ngStyle]="{'width':'20px','height':'20px'}">
+    </div>
+    <p [ngStyle]="{'width':'100%','text-align':'start'}" *ngIf="faq6">
+      3.5% from the buyer and 3.5% from the seller  (plus applicable PayPal fees: 2.9% + 30 cents for
+      domestic and 4.4% + 30 cents for international) so the total charge can be around 6-9% of the total
+      sale price. This is to keep it fair on each end, open to hearing different.
+    </p>
+  </div>
+
+  <div id="faq7" [ngStyle]="{'width':'100%','border-left':'blue 1vh solid','padding':'1vh','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'5vh','cursor':'pointer'}" (click)="toggleFaq($event)">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start','line-height':'5vh'}">How can I file a PayPal claim?</p>
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+      <img src="../../../assets/down-arrow.png" alt="drop down arrow" [ngStyle]="{'width':'20px','height':'20px'}">
+    </div>
+    <div [ngStyle]="{'width':'100%','display':'flex','flex-direction':'column','align-items':'center'}" *ngIf="faq7">
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'1vh'}">
+        If you are unable to resolve an issue directly with your seller, this guide can help you resolve the issues you may have.
+        Before beginning a PayPal claim, please be sure to
+        <a [ngStyle]="{'text-decoration':'none','color':'blue','cursor':'pointer'}"
+          [routerLink]="['/contact']">contact our support team</a> directly so we can
+        investigate the issue, take further action against the offending user, and provide any necessary
+        assistance to ensure the claim is settled in your favor.
+      </p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh','font-weight':'bold'}">
+        Please note you have 180 days from the purchase date to file a dispute.
+      </p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh','font-weight':'bold','font-size':'2rem','line-height':'5vh'}">
+        1. Select the transaction in your PayPal activity page or file a claim
+        here: <a target="_blank" href="https://www.paypal.com/disputes/" [ngStyle]="{'text-decoration':'none'}">https://www.paypal.com/disputes/</a>
+      </p>
+
+      <img src="../../../assets/paypal-claim-1.png" [ngClass]="{'faq-img':true}">
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">This is the transaction between you and the seller </p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh','font-weight':'bold','font-size':'2rem','line-height':'5vh'}">
+        2. Scroll to Need help? at the bottom of the transaction’s detail page, and select Resolution Center.</p>
+
+      <img src="../../../assets/paypal-claim-2.png" [ngClass]="{'faq-img':true}">
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">Transaction Details page</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh','font-weight':'bold','font-size':'2rem','line-height':'5vh'}">
+        3. Select the appropriate reason for opening the claim under “I’m opening this dispute because:”
+      </p>
+
+      <img src="../../../assets/paypal-claim-3.png" [ngClass]="{'faq-img':true}">
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh','font-weight':'bold','font-size':'2rem','line-height':'5vh'}">
+        4. Contact the seller in PayPal’s Resolution Center.
+      </p>
+
+      <img src="../../../assets/paypal-claim-4.png" [ngClass]="{'faq-img':true}">
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">“Item not as described” claim form</p>
+
+      <img src="../../../assets/paypal-claim-5.png" [ngClass]="{'faq-img':true}">
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">'Item not received' claim form</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">You should communicate with your seller through this form so that PayPal can review the conversation
+        details. The seller will be able to view and respond to these messages directly on their end. Please
+        provide as much information as possible to support your case.</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh','font-weight':'bold'}">Please also be sure to check your "Spam" folder for any correspondence from PayPal to
+        ensure it is promptly addressed.</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">
+        If you are unable to work out a resolution with the seller, or if the seller is unresponsive,
+        please escalate the claim for PayPal’s review as soon as possible. You can escalate to a claim
+        within 20 calendar days from the date the dispute was opened.</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">
+        The Resolution Center will provide you with the date when PayPal will allow you to escalate
+        the claim. Please note that a dispute will automatically close if it isn’t escalated to a claim
+        within 20 days. Closed disputes cannot be reopened or escalated to a claim. Please check the
+        <a target="_blank" href="https://www.paypal.com/disputes/" [ngStyle]="{'text-decoration':'none'}">Resolution Center</a> to
+        see any messages that are part of your dispute. Claim timeframes may vary
+        depending on the nature of the case.</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">
+        Please note that you should <strong>*never*</strong> close a dispute or claim if you have not received
+        your item or your refund. If the seller agrees to a refund, they should complete the process through
+        the PayPal claim. It is also very important to make sure that you are opening the correct type of
+        claim, and only open an ‘Unauthorized’ claim if you have used the Guest Checkout to purchase a listing.</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">
+        PayPal will email you to let you know they received your claim and they will continue to email
+        you with updates as well as to inform you of any action or information required from
+        you. <strong>Important: you must respond promptly to PayPal's requests for documentation, otherwise your
+        claim will be refused.</strong> PayPal usually decides cases in 30 days or less, but it may take longer
+        in some cases. You can always check the status of your claim by visiting the <a target="_blank" href="https://www.paypal.com/disputes/" [ngStyle]="{'text-decoration':'none'}">Resolution Center</a>
+      </p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center','margin-bottom':'3vh'}">
+        Visit this article on <a target="_blank" href="https://medium.com/@grailed/how-to-file-a-paypal-claim-ae9372cb371f"
+        [ngStyle]="{'text-decoration':'none'}">Medium</a> to learn how to file a PayPal claim.</p>
+
+      <p [ngStyle]="{'width':'100%','text-align':'center'}">If you didn't find what you're looking for, please contact infotechnano3@gmail.com</p>
+
+    </div>
+  </div>
+
+</div>

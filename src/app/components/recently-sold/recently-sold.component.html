@@ -1,0 +1,13 @@
+<div [ngStyle]="{'width':'100vw','height':'auto','padding':'3vh 10vw'}">
+
+  <p [ngStyle]="{'width':'100%','text-align':'center','font-size':'3rem','font-weight':'bold'}">Recently Sold</p>
+
+  <div [ngStyle]="{'width':'100%','border-left':'rgb(64,255,0)','border-top':'none','border-right':'none',
+    'border-bottom':'none','border-radius':'10px 0 0 10px','margin-bottom':'1vh'}"
+    *ngFor="let product of productList" id="{{product?.id}}">
+    <p [ngStyle]="{'font-size':'2rem','font-weight':'bold','width':'100%','text-align':'start'}">{{product?.title}}</p>
+    <p [ngStyle]="{'width':'100%','text-align':'start'}">
+      {{product?.askingPrice}}
+    </p>
+  </div>
+</div>

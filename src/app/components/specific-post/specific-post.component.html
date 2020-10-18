@@ -1,0 +1,82 @@
+<div [ngStyle]="{'width':'100vw','display':'flex','flex-direction':'column','justify-content':'center'}">
+  <div [ngClass]="{'converse-post-container': true}">
+    <div [ngClass]="{'converse-post': true}" [ngStyle]="{'width':'90%','margin-top':'1vh','margin-left':'1vw',
+    'margin-right':'1vw'}">
+
+      <!--div for post author image-->
+      <div [ngStyle]="{'height': '100%','width': '20%'}">
+        <div [ngStyle] = "{'padding': '5px'}">
+          <img [ngStyle] ="{'border': 'none','border-radius':'50%'}" *ngIf
+            src="{{post?.postAuthorImg}}" alt="{{post?.postAuthor}}">
+          <ng-template #noPhoto>
+            <p [ngStyle]="{'text-align': 'center','font-weight': 'bold','font-size': '0.5rem'}">User Photo</p>
+          </ng-template>
+        </div>
+
+      </div>
+
+      <!--div for the rest of the post-->
+      <div [ngStyle]="{'height': '100%','width': '80%'}">
+        <!--post metadata-->
+        <div [ngStyle]="{'display': 'flex','width':'100%','flex-direction': 'column'}">
+          <p [ngClass]="{'converse-post-info':true}">{{post?.postAuthorName}}</p>
+          <p [ngClass]="{'converse-post-info':true}" [ngStyle] = "{'color': '#ccc','font-weight': 'normal'}">{{post?.timeStamp}}</p>
+          <p [ngClass]="{'converse-post-info':true}">{{post?.postTitle}}</p>
+          <p [ngClass]="{'converse-post-info':true}">{{post?.postPrice}}</p>
+          <p [ngClass]="{'converse-post-info':true}" [ngStyle] = "{'font-weight': 'normal'}">{{post?.postDescription}}</p>
+        </div>
+
+        <!--post images-->
+        <div *ngFor="let image of post.postImages" [ngStyle]="{'display': 'flex','margin-top': '1vh'}">
+          <img src="{{image}}" [ngStyle]="{'margin-left': '1vh'}" *ngif>
+        </div>
+
+        <!--post buttons-->
+        <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start'}">
+          <img src="{{post?.heartPath}}" alt="heart" (click)="likePost($event)" [ngStyle]="{'width':'20px','height':'20px',
+            'cursor':'pointer','margin-left':'2vw'}">
+          <p [ngStyle]="{'margin-left':'1vh'}">{{post?.likes}} likes | </p>
+          <p [ngStyle]="{'margin-left':'1vh'}">{{post?.commentNum}} comments</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--buy and offer buttons-->
+  <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'center','position':'fixed',
+  'bottom':'0','left':'0','z-index':'2','background':'rgb(64,255,0)','height':'7vh','align-items':'center'}">
+  <!--<a [routerLink]="['/#']" [ngStyle]="{'background': '#888','color': 'white','padding':'5px',
+      'border': 'none','border-radius':'10px','cursor':'pointer','height':'auto',
+    'margin-left':'auto'}">Buy</a> -->
+  <a [routerLink]="['/offer']" [ngStyle]="{'background': '#ccc','color': 'black','padding':'5px',
+  'border': 'none','border-radius':'10px','cursor':'pointer','height':'auto'}">Offer</a>
+  </div>
+
+  <!--form to add a comment-->
+  <form method="POST" [ngStyle]="{'display':'flex','width':'70%','margin':'1vh auto','background': 'transparent',
+    'border':'1px #ccc solid','border-radius':'10px','justify-content':'space-around','overflow':'hidden','padding-left':'5px'}"
+    #commentForm="ngForm"  (ngSubmit)="addComment(commentForm.value)" *ngIf="userId !== 'null'">
+  <textarea type="text" placeholder="Write a comment max 500 characters..." [ngStyle]="{'background':'transparent',
+    'width':'60%','border':'none','overflow-y':'scroll'}"
+    name="newCommentStr" [(ngModel)]="newCommentStr"></textarea>
+  <input type="submit" value="Post" [ngStyle]="{'background':'rgb(64,255,0)','color':'white','border':'rgb(64,255,0) 1px solid',
+    'cursor':'pointer','width':'10%','margin-left':'auto','font-weight':'bold'}">
+  </form>
+
+  <!--comment list-->
+  <div [ngStyle]="{'width':'70%','height':'40vh','margin-top':'1vh','margin-bottom':'10vh','margin-left':'auto','margin-right':'auto','overflow-y':'scroll'}">
+
+  <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'start','border-bottom':'#ccc 1px solid','margin-bottom':'1vh',
+  'border-right':'none','border-top':'none','border-left':'1vh rgb(64,255,0) solid','border-radius':'10px 0 0 10px','padding':'0 5px'}" *ngFor="let commentDiv of commentList">
+    <div [ngStyle]="{'display':'flex','flex-direction':'column'}">
+      <p [ngStyle]="{'margin-bottom':'1vh'}">{{commentDiv?.authorName}}</p>
+      <p [ngStyle]="{'margin-bottom':'1vh'}">{{commentDiv?.message}}</p>
+      <div [ngStyle]="{'color':'#ccc'}">{{commentDiv?.createdAt}}
+        <!-- <a [routerLink]="['/#']"
+        [ngStyle]="{'color':'black','text-decoration':'none','cursor':'pointer'}">Reply</a> -->
+      </div>
+    </div>
+  </div>
+
+</div>

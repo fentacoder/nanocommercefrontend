@@ -1,0 +1,49 @@
+<div [ngStyle]="{'width':'100vw','padding':'0 25vw'}">
+  <div [ngClass]="{'form-container': true}" [ngStyle]="{'padding': '5px','margin-top':'10vh'}" *ngIf="!messageSent;else messageDone">
+    <form #contactForm="ngForm" method="POST" [ngClass]="{'app-form': true}" [ngStyle]="{'display': 'block','margin': 'auto'}"
+      (ngSubmit) = sendMessage(contactForm.value)>
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '5rem','font-weight': 'bold','margin': '6vh 0'}">Nano Commerce</p>
+
+      <p [ngStyle]="{'width': '100%','text-align': 'center','font-size': '1rem','font-weight': 'bold','margin-bottom': '1vh'}">
+        Send a message below
+      </p>
+
+      <div *ngIf="message.invalid && (message.dirty || message.touched)"
+        class="alert alert-danger">
+        <div *ngIf="message.errors.required">
+          Message is required.
+        </div>
+        <div *ngIf="message.errors.maxlength">
+          Message cannot be more than 500 characters long.
+        </div>
+        <div *ngIf="message.errors.minlength">
+          Message must be at least 3 characters long.
+        </div>
+      </div>
+
+      <textarea name="message" rows="10" ngModel [ngClass]="{'app-textarea':true}"
+      required minlength="3" maxlength="500" #message="ngModel"></textarea>
+
+      <input type="submit" value="Send" [ngClass]="{'app-form-btn': true}">
+    </form>
+  </div>
+
+  <ng-template #messageDone>
+    <div [ngStyle]="{'width':'80%','height':'40vh','background':'rgb(64,255,0)','border':'none',
+      'border-radius':'10px','padding':'5px'}">
+      <p [ngStyle]="{'color':'white','font-size':'2rem','font-weight':'bold','margin-bottom':'1vh','width':'100%',
+        'text-align':'center'}">
+        Message sent successfully!
+      </p>
+
+      <p [ngStyle]="{'color':'white','font-weight':'bold','margin-bottom':'1vh','width':'100%',
+        'text-align':'center'}">
+        You should be redirected back to the market in 5 seconds, if not you can click
+        <a [ngStyle]="{'color':'blue','text-decoration':'none','cursor':'pointer'}"
+          [routerLink]="['/market']">here</a>
+      </p>
+    </div>
+  </ng-template>
+
+</div>

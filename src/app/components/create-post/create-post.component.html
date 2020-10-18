@@ -1,0 +1,58 @@
+<div [ngStyle]="{'width':'100vw','display':'flex','justify-content':'center'}">
+  <div [ngClass]="{'form-container':true}" [ngStyle]="{'width': '60%','height':'auto','padding':'10px 30px','margin':'3vh','overflow':'hidden'}">
+    <!--x button-->
+    <a [ngStyle]="{'position':'relative','top':'0','right':'0','z-index':'2','background':'red','color':'white',
+      'text-decoration':'none','font-size':'2rem','font-weight':'bold','width':'3vw','border':'none','border-radius':'5px',
+        'text-align':'center','padding':'5px'}"
+      [routerLink]="['/exchange']">&times;</a>
+
+    <!--picture instructions-->
+    <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'center','flex-direction':'column','align-items':'center'}">
+      <img src="../../../assets/image-icon.png" alt="photo icon" [ngStyle]="{'width':'40%','height':'50%','display':'flex','justify-content':'center','margin-bottom':'3vh'}">
+      <p [ngStyle]="{'width':'100%','text-align':'center','font-weight':'bold','font-size':'2rem'}">What's on your mind</p>
+      <p [ngStyle]="{'width':'100%','text-align':'center'}">Images are optional</p>
+    </div>
+
+    <form method="POST" #newPostForm="ngForm" (ngSubmit)="createPost(newPostForm.value)" enctype="multipart/form-data">
+
+      <div *ngIf="title.invalid && (title.dirty || title.touched)"
+        class="alert alert-danger">
+        <div *ngIf="title.errors.required">
+          Title is required.
+        </div>
+        <div *ngIf="title.errors.maxlength">
+          Title cannot be more than 200 characters long.
+        </div>
+        <div *ngIf="title.errors.minlength">
+          Title must be at least 3 characters long.
+        </div>
+      </div>
+
+      <div *ngIf="description.invalid && (description.dirty || description.touched)"
+        class="alert alert-danger">
+        <div *ngIf="description.errors.required">
+          Description is required.
+        </div>
+        <div *ngIf="description.errors.maxlength">
+          Description cannot be more than 500 characters long.
+        </div>
+        <div *ngIf="description.errors.minlength">
+          Description must be at least 3 characters long.
+        </div>
+      </div>
+
+      <input type="file" [ngClass]="{'app-input':true}" placeholder="Image #1 Required" (change)="onImage1Change($event)" name="image1">
+      <input type="file" [ngClass]="{'app-input':true}" placeholder="Image #2 Required" (change)="onImage2Change($event)" name="image2">
+      <input type="file" [ngClass]="{'app-input':true}" placeholder="Image #3 Required" (change)="onImage3Change($event)" name="image3">
+
+      <input type="text" [ngClass]="{'app-input':true}" placeholder="Title" name="title" ngModel
+      required maxlength="200" minlength="3" #title="ngModel">
+      <textarea [ngClass]="{'app-textarea':true}" placeholder="Description" name="description"
+      rows="10" ngModel required maxlength="500" minlength="3" #description="ngModel"></textarea>
+      <input type="number" [ngClass]="{'app-input':true}" placeholder="Price if posting about a potential bid" name="price" [(ngModel)]="price">
+
+      <input type="submit" value="Post" *ngIf="!priceError" [ngClass]="{'app-form-btn':true}">
+    </form>
+  </div>
+</div>
+

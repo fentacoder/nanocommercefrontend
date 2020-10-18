@@ -1,0 +1,42 @@
+<app-loading *ngIf="loading" [ngStyle]="{'position':'fixed','top':'25vh','left':'0'}"></app-loading>
+
+<div [ngStyle]="{'width':'100vw','height':'70%','display':'flex','justify-content':'space-around','background':'rgb(237,237,237)',
+    'overflow-y':'scroll'}">
+  <!--message display-->
+  <div [ngClass]="{'chat-display':true}" #chatList>
+    <!--message-->
+    <div [ngStyle]="message?.messageContainerStyle" id="{{message?.displayId}}" *ngFor="let message of displayList">
+
+      <!--message and timestamp container-->
+      <div [ngStyle]="message?.messageStyle" *ngIf="message?.message.length > 0 || message?.image">
+        <p [ngStyle]="{'font-weight':'bold','margin-bottom':'3px'}">{{message?.name}}</p>
+        <div *ngIf="message?.message">
+          {{message?.message}}
+        </div>
+
+        <img src="{{message?.image}}" *ngIf="message?.image" [ngStyle]="{'border':'none','border-radius':'10px',
+          'width':'20vw','height':'40vh','margin-bottom':'3px'}">
+
+        <p [ngStyle]="{'color':'#ccc'}">{{message?.timeStamp?.substring(0,10)}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--chat buttons-->
+<form #chatForm="ngForm" (ngSubmit)="sendMessage(chatForm.value)"
+  [ngStyle]="{'width':'100vw','height':'10vh','display':'flex','flex-direction':'column'}"
+  enctype="multipart/form-data" method="POST">
+  <div [ngStyle]="{'display':'flex','justify-content':'space-around','height':'100%'}">
+    <img src="../../../assets/blue_plus.png" alt="green plus add file" [ngStyle]="{'width':'10%','height':'100%',
+    'cursor':'pointer'}" (click)="openImageInput()">
+    <textarea name="messageContent" [(ngModel)]="messageContent" rows="10" placeholder="Type a message here"
+      [ngClass]="{'app-textarea':true}" [ngStyle]="{'width':'80%','overflow-y':'scroll'}"></textarea>
+    <input type="submit" value=">" [ngStyle]="{'background':'rgb(64,255,0)','color':'white','padding':'5px',
+      'cursor':'pointer','border':'none','width':'10%','height':'auto','font-size':'2rem','font-weight':'bold','border-radius':'0 10px 10px 0',
+      'margin-right':'3vw'}">
+  </div>
+  <input *ngIf="imageInput" type="file" placeholder="Add an image here"(change)="onImageChange($event)" name="fileContent"
+    [ngClass]="{'app-input':true}">
+</form>

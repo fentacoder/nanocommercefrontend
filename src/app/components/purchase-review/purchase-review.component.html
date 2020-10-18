@@ -1,0 +1,68 @@
+<p [ngStyle]="{'text-align':'center','font-size':'5rem','font-weight':'bold','margin':'6vh 0','width':'100vw'}">Review Purchase</p>
+
+<div [ngStyle]="{'display':'flex','justify-content':'space-around','padding':'0 5vw','width':'100vw'}">
+
+  <!--offer info-->
+  <div [ngStyle]="{'display':'flex','width':'50%','flex-direction':'column'}">
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','font-size':'3rem','margin-bottom':'3vh','line-height':'10vh'}">{{offer?.title}}</p>
+    <img src="{{offer?.image}}" alt="offer image" *ngIf="offer?.image" [ngClass]="{'pic-placeholder':true}" [ngStyle]="{'width':'15vw','height':'30vh'}">
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','font-size':'2rem','margin':'2vh 0'}">Asking price: {{offer?.price}}</p>
+    <p [ngStyle]="{'width':'100%','font-weight':'bold','margin-bottom':'1vh'}">{{offer?.details}}</p>
+  </div>
+
+  <!--bid info-->
+  <div [ngStyle]="{'display':'flex','width':'50%','flex-direction':'column'}">
+
+    <!--resulting price from bid-->
+    <div>
+      <!--bid amount-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around','margin-bottom':'1vh',
+          'align-items':'center'}">
+        <p [ngStyle]="{'color':'#ccc','font-weight':'bold'}">Bid Amount:</p>
+        <p>{{bidPrice}}</p>
+      </div>
+
+      <!--processing fee-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around','margin-bottom':'1vh',
+          'align-items':'center'}">
+        <p [ngStyle]="{'color':'#ccc','font-weight':'bold'}">Processing Fee:</p>
+        <p>{{processingFee}}</p>
+      </div>
+
+      <!--separator-->
+      <div [ngStyle]="{'width':'100%','height':'1px','background':'1px #888 solid','margin-bottom':'1vh'}"></div>
+
+      <!--shipping fee-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around','margin-bottom':'2vh',
+      'align-items':'center'}">
+        <p [ngStyle]="{'color':'#ccc','font-weight':'bold'}">Shipping Fee:</p>
+        <p>{{shippingFee}}</p>
+      </div>
+
+      <!--total fee-->
+      <div [ngStyle]="{'width':'100%','display':'flex','justify-content':'space-around',
+      'align-items':'center'}">
+        <p [ngStyle]="{'color':'#ccc','font-weight':'bold'}">Total Price:</p>
+        <p>{{totalPrice}}</p>
+      </div>
+
+      <!--separator-->
+      <div [ngStyle]="{'width':'100%','height':'1px','background':'1px #888 solid','margin-bottom':'1vh'}"></div>
+    </div>
+  </div>
+</div>
+
+<!-- cancel and confirm btns-->
+<div [ngStyle]="{'position':'fixed','bottom':'0','left':'0','border-top':'1px #888 solid','height':'10vh','width':'100vw'}">
+  <div [ngStyle]="{'display':'flex','margin-left':'auto','width':'100%','justify-content':'end',
+    'height':'100%','align-Items':'center','padding':'0 3vw'}">
+    <button (click)="cancelBid()" [ngStyle]="{'padding':'5px',
+      'background':'transparent','border':'1px #888 solid','border-radius':'10px','color':'#888','cursor':'pointer',
+      'width':'auto','margin-left':'auto'}">
+      Cancel
+    </button>
+
+    <button (click)="confirmPurchase()" [ngStyle]="{'padding':'5px','background':'rgb(31,30,30)','border':'none',
+      'border-radius':'10px','color':'white','cursor':'pointer','margin-left':'3vw','width':'auto'}">Confirm</button>
+  </div>
+</div>
