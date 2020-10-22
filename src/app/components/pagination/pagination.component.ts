@@ -18,11 +18,11 @@ export class PaginationComponent implements OnInit,OnChanges {
   pageClass4:any = {};
   pageClass5:any = {};
   pageMin:number = 1;
-  page1Aval:boolean = false;
-  page2Aval:boolean = false;
-  page3Aval:boolean = false;
-  page4Aval:boolean = false;
-  page5Aval:boolean = false;
+  page1Avail:boolean = false;
+  page2Avail:boolean = false;
+  page3Avail:boolean = false;
+  page4Avail:boolean = false;
+  page5Avail:boolean = false;
 
   constructor() { }
 
@@ -152,72 +152,72 @@ export class PaginationComponent implements OnInit,OnChanges {
 
       switch(Number(newTempNumStr)){
         case 1:
-          this.page1Aval = true;
-          this.page2Aval = false;
-          this.page3Aval = false;
-          this.page4Aval = false;
-          this.page5Aval = false;
+          this.page1Avail = true;
+          this.page2Avail = false;
+          this.page3Avail = false;
+          this.page4Avail = false;
+          this.page5Avail = false;
           break;
         case 2:
-          this.page1Aval = true;
-          this.page2Aval = true;
-          this.page3Aval = false;
-          this.page4Aval = false;
-          this.page5Aval = false;
+          this.page1Avail = true;
+          this.page2Avail = true;
+          this.page3Avail = false;
+          this.page4Avail = false;
+          this.page5Avail = false;
           break;
         case 3:
-          this.page1Aval = true;
-          this.page2Aval = true;
-          this.page3Aval = false;
-          this.page4Aval = false;
-          this.page5Aval = false;
+          this.page1Avail = true;
+          this.page2Avail = true;
+          this.page3Avail = true;
+          this.page4Avail = false;
+          this.page5Avail = false;
           break;
         case 4:
-          this.page1Aval = true;
-          this.page2Aval = true;
-          this.page3Aval = false;
-          this.page4Aval = false;
-          this.page5Aval = false;
+          this.page1Avail = true;
+          this.page2Avail = true;
+          this.page3Avail = true;
+          this.page4Avail = true;
+          this.page5Avail = false;
           break;
         case 5:
-          this.page1Aval = true;
-          this.page2Aval = true;
-          this.page3Aval = false;
-          this.page4Aval = false;
-          this.page5Aval = false;
+          this.page1Avail = true;
+          this.page2Avail = true;
+          this.page3Avail = true;
+          this.page4Avail = true;
+          this.page5Avail = true;
           break;
         default:
-          this.page1Aval = true;
-          this.page2Aval = false;
-          this.page3Aval = false;
-          this.page4Aval = false;
-          this.page5Aval = false;
+          this.page1Avail = true;
+          this.page2Avail = false;
+          this.page3Avail = false;
+          this.page4Avail = false;
+          this.page5Avail = false;
           break;
       }
     }else if(this.numberOfPages === this.pageMin){
-      this.page1Aval = true;
-      this.page2Aval = false;
-      this.page3Aval = false;
-      this.page4Aval = false;
-      this.page5Aval = false;
+      this.page1Avail = true;
+      this.page2Avail = false;
+      this.page3Avail = false;
+      this.page4Avail = false;
+      this.page5Avail = false;
     }else{
-      this.page1Aval = true;
-      this.page2Aval = true;
-      this.page3Aval = true;
-      this.page4Aval = true;
-      this.page5Aval = true;
+      this.page1Avail = true;
+      this.page2Avail = true;
+      this.page3Avail = true;
+      this.page4Avail = true;
+      this.page5Avail = true;
     }
   }
 
   firstPage(){
     this.currentPage = 1;
-    this.currentList.emit({currentPage: this.currentPage,lastPage: 'false'});
+    this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier: true,skipped: 0});
     this.pageMin = 1;
     this.stylePages();
   }
 
   lastPage(){
-    this.currentList.emit({currentPage: this.numberOfPages,lastPage: 'true'});
+    this.currentList.emit({currentPage: this.numberOfPages,lastPage: true,earlier: false,skipped: 0});
     this.currentPage = this.numberOfPages;
 
     if(this.numberOfPages >= 10){
@@ -247,42 +247,67 @@ export class PaginationComponent implements OnInit,OnChanges {
   }
 
   previousPage(){
-    if(this.currentPage.toString().substring(1) === '1' || this.currentPage.toString().substring(1) === '6'){
-      //go to previous set of 5 pages
-      this.pageMin -= 5;
-      this.currentPage -= 1;
-      this.currentList.emit({currentPage: this.currentPage,lastPage: 'false'});
+    if(this.currentPage >= 10){
+      if(this.currentPage.toString().substring(1) === '1' || this.currentPage.toString().substring(1) === '6'){
+        //go to previous set of 5 pages
+        this.pageMin -= 5;
+        this.currentPage -= 1;
+        this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier:true,skipped: 0});
+      }else{
+        if(this.currentPage !== 1){
+          this.currentPage -= 1;
+          this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier:true,skipped: 0});
+        }
+      }
     }else{
-      this.currentPage -= 1;
-      this.currentList.emit({currentPage: this.currentPage,lastPage: 'false'});
+      if(this.currentPage !== 1){
+        this.currentPage -= 1;
+        this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier:true,skipped: 0});
+      }
     }
     this.stylePages();
   }
 
   nextPage(){
-    if(this.currentPage.toString().substring(1) === '5' || this.currentPage.toString().substring(1) === '0'){
-      //go to previous set of 5 pages
-      this.pageMin += 5;
-      this.currentPage += 1;
-      if(this.currentPage === this.numberOfPages){
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'true'});
+    if(this.currentPage >= 10){
+      if(this.currentPage.toString().substring(1) === '5' || this.currentPage.toString().substring(1) === '0'){
+        //go to previous set of 5 pages
+        this.pageMin += 5;
+        this.currentPage += 1;
+        if(this.currentPage === this.numberOfPages - 1){
+          this.currentList.emit({currentPage: this.currentPage,lastPage: true,earlier:false,skipped: 0});
+        }else if(this.currentPage !== this.numberOfPages){
+          this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier:false,skipped: 0});
+        }
       }else{
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'false'});
+        this.currentPage += 1;
+        if(this.currentPage === this.numberOfPages - 1){
+          this.currentList.emit({currentPage: this.currentPage,lastPage: true,earlier:false,skipped: 0});
+        }else if(this.currentPage !== this.numberOfPages){
+          this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier:false,skipped: 0});
+        }
       }
     }else{
-      this.currentPage += 1;
-      if(this.currentPage === this.numberOfPages){
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'true'});
-      }else{
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'false'});
+      if(this.currentPage === this.numberOfPages - 1){
+        this.currentList.emit({currentPage: this.currentPage,lastPage: true,earlier:false,skipped: 0});
+      }else if(this.currentPage !== this.numberOfPages){
+        this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier:false,skipped: 0});
       }
     }
+
     this.stylePages();
   }
 
   changePage(e){
     let tempPageStr:string = e.path[0].innerText;
     this.currentPage = Number(e.path[0].innerText);
+    let direction = this.currentPage - Number(tempPageStr) - 1;
+    let difference = Math.abs(direction);
+
+    if(difference === 0){
+      return;
+    }
+
     if(Number(tempPageStr) >= 10){
       let divBy10 = Math.floor(Number(tempPageStr) / 10);
 
@@ -295,9 +320,9 @@ export class PaginationComponent implements OnInit,OnChanges {
       }
       this.stylePages();
       if(this.currentPage === this.numberOfPages){
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'true'});
+        this.currentList.emit({currentPage: this.currentPage,lastPage: true,earlier:false,skipped:0});
       }else{
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'false'});
+        this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier: direction > 0 ? true : false,skipped: difference});
       }
     }else{
       let tempPage = Number(tempPageStr);
@@ -309,9 +334,9 @@ export class PaginationComponent implements OnInit,OnChanges {
       this.stylePages();
 
       if(this.currentPage === this.numberOfPages){
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'true'});
+        this.currentList.emit({currentPage: this.currentPage,lastPage: true,earlier: false,skipped: 0});
       }else{
-        this.currentList.emit({currentPage: this.currentPage,lastPage: 'false'});
+        this.currentList.emit({currentPage: this.currentPage,lastPage: false,earlier: direction > 0 ? true : false,skipped: difference});
       }
     }
   }
